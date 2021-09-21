@@ -1,20 +1,18 @@
 import React from 'react';
-import { Container, Row, Col } from 'react-bootstrap';
+import { Container, Row } from 'react-bootstrap';
 import Jumbotron from './jumbotron';
+import Cards from './cards'
 
 const GridLayout = () => {
     return (
         <>
             <Container fluid>
 
-                <Row>
-                    <Col>
-                        <Jumbotron />
-                    </Col>
+                <Row className="justify-content-md-center">
+                    <Jumbotron />
                 </Row>
-                <Row>
-                    
-                </Row>
+
+                <Cards />
 
             </Container>
         </>

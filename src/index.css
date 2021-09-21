@@ -25,3 +25,16 @@ code {
   line-height: 1;
   width: 100%;
 }
+
+.card :hover {
+  border-color: var(--bs-success)!important;
+  background-color: lightgray;
+}
+
+.col .card {
+  margin: 0.5rem;
+}
+
+.card .border-dark :hover {
+  border-color: var(--bs-success)!important;
+}
