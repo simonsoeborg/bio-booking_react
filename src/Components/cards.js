@@ -12,7 +12,7 @@ const Cards = () => {
                 <Card border="dark" style={{ width: '15rem'}}>
                     <Card.Body>
                         <Card.Title>Suicide Squad</Card.Title>
-                        <Card.Link href="#">18:00</Card.Link>
+                        <Card.Link href="#/infobook/">18:00</Card.Link>
                         <Card.Link href="#">21:00</Card.Link>
                         <Card.Link href="#">22:30</Card.Link>
                     </Card.Body>
@@ -55,11 +55,11 @@ const Cards = () => {
                     </Card.Body>
                 </Card>
             </CardGroup>
-        
+
         </Row>
         </>
     )
-    
+
 }
 
 export default Cards;
