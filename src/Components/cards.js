@@ -1,5 +1,6 @@
-import React from 'react';
+
 import { Row, Card, CardGroup } from 'react-bootstrap';
+
 
 
 const Cards = () => {
@@ -7,7 +8,6 @@ const Cards = () => {
         <>
         <Row style={{ padding: "2rem" }}><h2>Spilles i dag</h2></Row>
         <Row style={{ padding: "2rem" }} className="justify-content-md-center">
-            
             <CardGroup>
                 <Card border="dark" style={{ width: '15rem'}}>
                     <Card.Body>
@@ -21,7 +21,7 @@ const Cards = () => {
                 <Card border="dark" style={{ width: '15rem'}}>
                     <Card.Body>
                         <Card.Title>Avengers</Card.Title>
-                        <Card.Link href="#">18:00</Card.Link>
+                        <Card.Link href='#'>18:00</Card.Link>
                         <Card.Link href="#">21:00</Card.Link>
                     </Card.Body>
                 </Card>
@@ -55,9 +55,11 @@ const Cards = () => {
                     </Card.Body>
                 </Card>
             </CardGroup>
+        
         </Row>
         </>
-    ) 
+    )
+    
 }
 
 export default Cards;
