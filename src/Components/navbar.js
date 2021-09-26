@@ -16,8 +16,14 @@ export const BioNavbar = () => {
                             <LinkContainer to="/">
                                 <Nav.Link>Hjem</Nav.Link>
                             </LinkContainer>
-                            <LinkContainer to="/team">
+                            <LinkContainer to="/infobook">
                                 <Nav.Link>Booking</Nav.Link>
+                            </LinkContainer>
+                            <LinkContainer to="/upcoming">
+                                <Nav.Link>Kommende film</Nav.Link>
+                            </LinkContainer>
+                            <LinkContainer to="/program">
+                                <Nav.Link>Program</Nav.Link>
                             </LinkContainer>
                         </Nav>
                     </Navbar.Collapse>
