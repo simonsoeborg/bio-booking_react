@@ -16,7 +16,7 @@ export const BioNavbar = () => {
                             <LinkContainer to="/">
                                 <Nav.Link>Hjem</Nav.Link>
                             </LinkContainer>
-                            <LinkContainer to="/team">
+                            <LinkContainer to="/infobook">
                                 <Nav.Link>Booking</Nav.Link>
                             </LinkContainer>
                         </Nav>
