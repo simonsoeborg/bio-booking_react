@@ -1,6 +1,4 @@
 import React from 'react'
-import { HashRouter, Route, Switch } from 'react-router-dom';
-import InfoSite from './Components/infosite';
 import './App.css';
 import Init from './Components/grid'
 import InfoSite from './Components/infosite';
