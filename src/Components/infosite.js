@@ -21,7 +21,7 @@ const InfoSite = () =>{
                 <Form.Group>
                     <Form.Label>Sæder</Form.Label>
                     <Form.Select>
-                        <option>Vælg antal sæder</option>
+                        <option >Vælg antal sæder</option>
                         <option value="1">1</option>
                         <option value="2">2</option>
                         <option value="3">3</option>
