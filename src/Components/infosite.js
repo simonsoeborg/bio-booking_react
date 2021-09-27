@@ -10,18 +10,68 @@ function SeatModal (props){
           </Modal.Title>
         </Modal.Header>
         <Modal.Body >
-          <Container>
-            <Row>
+          <Container fluid>
+            <Row xs={3} md={3} >
             <Col>
+                <Card border="success" style={{width: '8rem'}}> 
+                    <Card.Body>
+                        <Card.Text>Række 1, Sæde 1</Card.Text>
+                    </Card.Body>
+                </Card>
+             </Col>
+             <Col>   
+                <Card border="success" style={{width: '8rem'}}> 
+                    <Card.Body>
+                        <Card.Text>Række 1, Sæde 2</Card.Text>
+                    </Card.Body>
+                </Card>
+                </Col>
+             <Col>  
                 <Card border="success" style={{width: '8rem'}}> 
                     <Card.Body>
                         <Card.Text>Række 1, Sæde 3</Card.Text>
                     </Card.Body>
                 </Card>
-                
+                </Col>
+             <Col>  
                 <Card border="success" style={{width: '8rem'}}> 
                     <Card.Body>
                         <Card.Text>Række 1, Sæde 4</Card.Text>
+                    </Card.Body>
+                </Card>
+                </Col>
+             <Col>  
+                <Card border="success" style={{width: '8rem'}}> 
+                    <Card.Body>
+                        <Card.Text>Række 1, Sæde 5</Card.Text>
+                    </Card.Body>
+                </Card>
+                </Col>
+             <Col>  
+                <Card border="success" style={{width: '8rem'}}> 
+                    <Card.Body>
+                        <Card.Text>Række 1, Sæde 6</Card.Text>
+                    </Card.Body>
+                </Card>
+                </Col>
+             <Col>  
+                <Card border="success" style={{width: '8rem'}}> 
+                    <Card.Body>
+                        <Card.Text>Række 1, Sæde 7</Card.Text>
+                    </Card.Body>
+                </Card>
+                </Col>
+             <Col>  
+                <Card border="success" style={{width: '8rem'}}> 
+                    <Card.Body>
+                        <Card.Text>Række 1, Sæde 8</Card.Text>
+                    </Card.Body>
+                </Card>
+            </Col>
+            <Col>  
+                <Card border="success" style={{width: '8rem'}}> 
+                    <Card.Body>
+                        <Card.Text>Række 1, Sæde 9</Card.Text>
                     </Card.Body>
                 </Card>
             </Col>
