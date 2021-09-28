@@ -1,7 +1,12 @@
 import React, {useState} from 'react';
-import {Container, Row, Form, Button, Col, Card, Modal} from "react-bootstrap"
+import {Container, Row, Form, Button, Col, Card, Modal, Image, ToggleButton, ToggleButtonGroup} from "react-bootstrap"
+import placehImg from '../images/posterPlaceholder.jpg';
+
+
 
 function SeatModal (props){
+  /*  const [color, setColor] = useState([true,false]);
+    const handleChange = (val) => setColor(!color); */
     return(
         <Modal {...props} aria-labelledby="contained-modal-title-vcenter">
         <Modal.Header closeButton color="blue">
@@ -11,67 +16,85 @@ function SeatModal (props){
         </Modal.Header>
         <Modal.Body >
           <Container fluid>
-            <Row xs={3} md={3} >
+            <Row>
+                <Card className='text-center' bg='dark' text='light' >
+                    <Card.Title > Lærred </Card.Title>
+                </Card>
+            </Row>
+            <Row xs={3} md={6} style={{padding: "4rem"}} >
             <Col>
-                <Card border="success" style={{width: '8rem'}}> 
-                    <Card.Body>
-                        <Card.Text>Række 1, Sæde 1</Card.Text>
-                    </Card.Body>
+                <Card border="success" style={{width: '2rem'}}> 
+                <Card.Body>
+                </Card.Body>
                 </Card>
              </Col>
              <Col>   
-                <Card border="success" style={{width: '8rem'}}> 
+                <Card border="success" style={{width: '2rem'}}> 
                     <Card.Body>
-                        <Card.Text>Række 1, Sæde 2</Card.Text>
                     </Card.Body>
                 </Card>
                 </Col>
              <Col>  
-                <Card border="success" style={{width: '8rem'}}> 
+                <Card border="success" style={{width: '2rem'}}> 
                     <Card.Body>
-                        <Card.Text>Række 1, Sæde 3</Card.Text>
                     </Card.Body>
                 </Card>
                 </Col>
              <Col>  
-                <Card border="success" style={{width: '8rem'}}> 
+                <Card border="success" style={{width: '2rem'}}> 
                     <Card.Body>
-                        <Card.Text>Række 1, Sæde 4</Card.Text>
                     </Card.Body>
                 </Card>
                 </Col>
              <Col>  
-                <Card border="success" style={{width: '8rem'}}> 
+                <Card border="success" style={{width: '2rem'}}> 
                     <Card.Body>
-                        <Card.Text>Række 1, Sæde 5</Card.Text>
                     </Card.Body>
                 </Card>
                 </Col>
              <Col>  
-                <Card border="success" style={{width: '8rem'}}> 
+                <Card border="success" style={{width: '2rem'}}> 
                     <Card.Body>
-                        <Card.Text>Række 1, Sæde 6</Card.Text>
                     </Card.Body>
                 </Card>
                 </Col>
              <Col>  
-                <Card border="success" style={{width: '8rem'}}> 
+                <Card border="success" style={{width: '2em'}}> 
                     <Card.Body>
-                        <Card.Text>Række 1, Sæde 7</Card.Text>
                     </Card.Body>
                 </Card>
                 </Col>
              <Col>  
-                <Card border="success" style={{width: '8rem'}}> 
+                <Card border="success" style={{width: '2rem'}}> 
                     <Card.Body>
-                        <Card.Text>Række 1, Sæde 8</Card.Text>
                     </Card.Body>
                 </Card>
             </Col>
             <Col>  
-                <Card border="success" style={{width: '8rem'}}> 
+                <Card border="success" style={{width: '2rem'}}> 
                     <Card.Body>
-                        <Card.Text>Række 1, Sæde 9</Card.Text>
+                        
+                    </Card.Body>
+                </Card>
+            </Col>
+            <Col>  
+                <Card border="success" style={{width: '2rem'}}> 
+                    <Card.Body>
+                        
+                    </Card.Body>
+                </Card>
+            </Col>
+            <Col>  
+                <Card border="success" style={{width: '2rem'}}> 
+                    <Card.Body>
+                        
+                    </Card.Body>
+                </Card>
+            </Col>
+            <Col>  
+                <Card border="success" style={{width: '2rem'}}> 
+                    <Card.Body>
+                        
                     </Card.Body>
                 </Card>
             </Col>
@@ -90,6 +113,11 @@ function InfoSite () {
     const [modalShow, setModalShow] = useState(false);
     return(
         <Container fluid>
+            <Row xs={3} md={4}>
+                <Col md={{ offset: 2 }}>
+                <Image src={placehImg} thumbn style={{width: '180px', height: '260px'}}/>
+                </Col>
+            </Row>
             <Row xs={3} md={2}>
             <Col md={{ span: 5, offset: 1}}>
                 <Form>
