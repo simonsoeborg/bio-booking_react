@@ -62,3 +62,12 @@ a {
   object-fit: cover;
   margin: 2%;
 }
+
+.card-group a {
+  margin-left: 0.5rem!important;
+  margin-right: 0.5rem!important;
+}
+
+.card-group {
+  justify-content: center;
+}
