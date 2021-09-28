@@ -35,6 +35,24 @@ code {
   margin: 0.5rem;
 }
 
-.card .border-dark :hover {
-  border-color: var(--bs-success)!important;
+.card-img-top {
+  width: 100%;
+  height: 15vw;
+  object-fit: cover;
+}
+
+.card-link {
+  color: black;
+}
+
+.card-title {
+  color: black;
+}
+
+.card-link:hover {
+  color: lightcoral;
+}
+
+a {
+  text-decoration: none !important;
 }

@@ -3,6 +3,7 @@ import './App.css';
 import Init from './Components/grid'
 import InfoSite from './Components/infosite';
 import Program from './Components/program';
+import MoviePage from './Components/moviepage';
 import {
     HashRouter,
     Link,
@@ -19,6 +20,7 @@ const App = () => {
             <Route path="/infobook/" component={InfoSite}/>
             <Route path="/upcoming" />
             <Route path="/program" component={Program} />
+            <Route path="/movie" component={MoviePage} />
             <Route exact path="/" component={Init}/>
         </Switch>
         </HashRouter>
