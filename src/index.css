@@ -56,3 +56,9 @@ code {
 a {
   text-decoration: none !important;
 }
+
+#default-img {
+  width: 50%;
+  object-fit: cover;
+  margin: 2%;
+}
