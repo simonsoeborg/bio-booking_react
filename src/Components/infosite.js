@@ -7,6 +7,22 @@ import Seats from '../dummydata/theaterSeats'
 function SeatModal (props){
   /*  const [color, setColor] = useState([true,false]);
     const handleChange = (val) => setColor(!color); */
+    const [toggle, setToggle] = React.useState(false);
+    const toggleThis = () => {
+        setToggle(!toggle)
+    }
+
+    const buttonState = (seat) => {
+        if (!toggle) {
+            return (
+                <Button variant="outline-success" id={seat} onClick={toggleThis}><MdEventSeat /></Button>
+            )
+        } else {
+            return (
+                <Button variant="outline-danger" id={seat} onClick={toggleThis}><MdEventSeat /></Button>
+            )
+        }
+    }
     return(
         <Modal {...props} aria-labelledby="contained-modal-title-vcenter">
         <Modal.Header closeButton color="blue">
@@ -25,7 +41,7 @@ function SeatModal (props){
                 {
                     Seats.map((seat) => 
                         <Col xs={1} md={2} style={{marginLeft: '-1rem', marginRight: '-1rem', marginTop: '0.5rem'}}>
-                            <Button variant="outline-success" id={seat}><MdEventSeat /></Button>
+                            {buttonState(seat)}
                         </Col>
                     )
                 }
