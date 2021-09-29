@@ -6,7 +6,6 @@ import Program from './Components/program';
 import MoviePage from './Components/moviepage';
 import {
     HashRouter,
-    Link,
     Route,
     Switch} from "react-router-dom";
 import BioNavbar from "./Components/navbar";

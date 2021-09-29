@@ -1,8 +1,8 @@
 import React, {useState} from 'react';
-import {Container, Row, Form, Button, Col, Card, Modal, Image, ToggleButton, ToggleButtonGroup} from "react-bootstrap"
+import {Container, Row, Form, Button, Col, Card, Modal, Image} from "react-bootstrap"
 import placehImg from '../images/posterPlaceholder.jpg';
-
-
+import { MdEventSeat } from 'react-icons/md';
+import Seats from '../dummydata/theaterSeats'
 
 function SeatModal (props){
   /*  const [color, setColor] = useState([true,false]);
@@ -18,86 +18,17 @@ function SeatModal (props){
           <Container fluid>
             <Row>
                 <Card className='text-center' bg='dark' text='light' >
-                    <Card.Title > Lærred </Card.Title>
+                    <Card.Title> Lærred </Card.Title>
                 </Card>
             </Row>
-            <Row xs={3} md={6} style={{padding: "4rem"}} >
-            <Col>
-                <Card border="success" style={{width: '2rem'}}> 
-                <Card.Body>
-                </Card.Body>
-                </Card>
-             </Col>
-             <Col>   
-                <Card border="success" style={{width: '2rem'}}> 
-                    <Card.Body>
-                    </Card.Body>
-                </Card>
-                </Col>
-             <Col>  
-                <Card border="success" style={{width: '2rem'}}> 
-                    <Card.Body>
-                    </Card.Body>
-                </Card>
-                </Col>
-             <Col>  
-                <Card border="success" style={{width: '2rem'}}> 
-                    <Card.Body>
-                    </Card.Body>
-                </Card>
-                </Col>
-             <Col>  
-                <Card border="success" style={{width: '2rem'}}> 
-                    <Card.Body>
-                    </Card.Body>
-                </Card>
-                </Col>
-             <Col>  
-                <Card border="success" style={{width: '2rem'}}> 
-                    <Card.Body>
-                    </Card.Body>
-                </Card>
-                </Col>
-             <Col>  
-                <Card border="success" style={{width: '2em'}}> 
-                    <Card.Body>
-                    </Card.Body>
-                </Card>
-                </Col>
-             <Col>  
-                <Card border="success" style={{width: '2rem'}}> 
-                    <Card.Body>
-                    </Card.Body>
-                </Card>
-            </Col>
-            <Col>  
-                <Card border="success" style={{width: '2rem'}}> 
-                    <Card.Body>
-                        
-                    </Card.Body>
-                </Card>
-            </Col>
-            <Col>  
-                <Card border="success" style={{width: '2rem'}}> 
-                    <Card.Body>
-                        
-                    </Card.Body>
-                </Card>
-            </Col>
-            <Col>  
-                <Card border="success" style={{width: '2rem'}}> 
-                    <Card.Body>
-                        
-                    </Card.Body>
-                </Card>
-            </Col>
-            <Col>  
-                <Card border="success" style={{width: '2rem'}}> 
-                    <Card.Body>
-                        
-                    </Card.Body>
-                </Card>
-            </Col>
+            <Row xs={3} md={6} style={{padding: "0.15rem", textAlign: 'center'}} >
+                {
+                    Seats.map((seat) => 
+                        <Col xs={1} md={2} style={{padding: '0.10rem'}}>
+                            <Button variant="outline-success" id={seat}><MdEventSeat /></Button>
+                        </Col>
+                    )
+                }
             </Row>
           </Container>
         </Modal.Body>
