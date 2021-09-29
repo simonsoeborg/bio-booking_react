@@ -12,6 +12,14 @@ const theaterSeats = [
     { seat: 10},
     { seat: 11},
     { seat: 12},
+    { seat: 13},
+    { seat: 14},
+    { seat: 15},
+    { seat: 16},
+    { seat: 17},
+    { seat: 18},
+    { seat: 19},
+    { seat: 20}
 ]
 
 export default theaterSeats;

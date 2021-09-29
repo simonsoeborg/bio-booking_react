@@ -16,7 +16,7 @@ function SeatModal (props){
         </Modal.Header>
         <Modal.Body >
           <Container fluid>
-            <Row>
+            <Row style={{ marginBottom: '25%' }}>
                 <Card className='text-center' bg='dark' text='light' >
                     <Card.Title> Lærred </Card.Title>
                 </Card>
@@ -24,7 +24,7 @@ function SeatModal (props){
             <Row xs={3} md={6} style={{padding: "0.15rem", textAlign: 'center'}} >
                 {
                     Seats.map((seat) => 
-                        <Col xs={1} md={2} style={{padding: '0.10rem'}}>
+                        <Col xs={1} md={2} style={{marginLeft: '-1rem', marginRight: '-1rem', marginTop: '0.5rem'}}>
                             <Button variant="outline-success" id={seat}><MdEventSeat /></Button>
                         </Col>
                     )
@@ -44,13 +44,13 @@ function InfoSite () {
     const [modalShow, setModalShow] = useState(false);
     return(
         <Container fluid>
-            <Row xs={3} md={4}>
-                <Col md={{ offset: 2 }}>
+            <Row style={{ justifyContent: 'center' }}>
+                <Col>
                 <Image src={placehImg} thumbn style={{width: '180px', height: '260px'}}/>
                 </Col>
             </Row>
-            <Row xs={3} md={2}>
-            <Col md={{ span: 5, offset: 1}}>
+            <Row style={{ justifyContent: 'center' }}>
+            <Col xs={3} md={2}>
                 <Form>
 
                     <Form.Group >
