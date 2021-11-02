@@ -4,6 +4,8 @@ import Init from './Components/grid'
 import InfoSite from './Components/infosite';
 import Program from './Components/program';
 import MoviePage from './Components/moviepage';
+import LoginPage from './Components/loginpage';
+
 import {
     HashRouter,
     Route,
@@ -21,6 +23,7 @@ const App = () => {
             <Route path="/program" component={Program} />
             <Route path="/movie" component={MoviePage} />
             <Route exact path="/" component={Init}/>
+            <Route path="/login" component={LoginPage} />
         </Switch>
         </HashRouter>
     </div>
