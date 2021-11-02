@@ -1,8 +1,11 @@
 import React, {useState} from 'react';
 import {Container, Row, Form, Button, Col, Card, Modal, Image} from "react-bootstrap"
-import placehImg from '../images/posterPlaceholder.jpg';
-import { MdEventSeat } from 'react-icons/md';
+import placehImg from '../images/posterPlaceholder.jpg'
+import { MdEventSeat } from 'react-icons/md'
 import Seats from '../dummydata/theaterSeats'
+import SeatAvailability from "./SeatSelector/SeatAvailability"
+import SeatMatrix from "./SeatSelector/SeatMatrix"
+import MovieContext from './SeatSelector/contexts/MovieContext'
 
 function SeatModal (props){
   /*  const [color, setColor] = useState([true,false]);
@@ -20,14 +23,8 @@ function SeatModal (props){
         </Modal.Header>
         <Modal.Body >
           <Container fluid>
-            <Row style={{ marginBottom: '25%' }}>
-                <Card className='text-center' bg='dark' text='light' >
-                    <Card.Title> Lærred </Card.Title>
-                </Card>
-            </Row>
-            <Row xs={3} md={6} style={{padding: "0.15rem", textAlign: 'center'}} >
-
-            </Row>
+            
+            <SeatMatrix />
           </Container>
         </Modal.Body>
         <Modal.Footer>
