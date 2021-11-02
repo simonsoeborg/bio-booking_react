@@ -1,15 +1,36 @@
 import React, {useState} from 'react';
 import {Container, Row, Form, Button, Col, Card, Modal, Image} from "react-bootstrap"
 import placehImg from '../images/posterPlaceholder.jpg';
-import { MdEventSeat } from 'react-icons/md';
-import Seats from '../dummydata/theaterSeats'
+import Seats from './seatsmap';
+
 
 function SeatModal (props){
-  /*  const [color, setColor] = useState([true,false]);
-    const handleChange = (val) => setColor(!color); */
-    const [toggle, setToggle] = React.useState(false);
-
-
+    const [seats, setSeats] = useState([
+        {
+            id: 1,
+            text: 1,
+            occ: false
+        },
+        {
+            id: 2,
+            text: 2,
+            occ: false
+        },
+        {
+            id: 3,
+            text: 3,
+            occ: false
+        }
+    ])
+    const toggleSelect = (id) => {
+        console.log(id);
+        setSeats(
+            seats.map((seat)=>
+            seat.id === id ? {...seat, occ: 
+                !seat.occ} : seat
+                )
+        )
+    }
 
     return(
         <Modal {...props} aria-labelledby="contained-modal-title-vcenter">
@@ -25,8 +46,8 @@ function SeatModal (props){
                     <Card.Title> Lærred </Card.Title>
                 </Card>
             </Row>
-            <Row xs={3} md={6} style={{padding: "0.15rem", textAlign: 'center'}} >
-
+            <Row>
+                <Seats seats={seats} onToggle={toggleSelect} />
             </Row>
           </Container>
         </Modal.Body>
@@ -79,7 +100,9 @@ function InfoSite () {
                     </Button>
                     <Button variant="outline-secondary" onClick={()=> setModalShow(true)}>Valg af sæder</Button>
                     <SeatModal show= {modalShow} onHide={() => setModalShow(false)}/>
+                 
                 </Form>
+             
             </Col>
 
             </Row>
