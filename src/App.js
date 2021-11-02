@@ -1,23 +1,28 @@
-import logo from './logo.svg';
+import React from 'react'
 import './App.css';
+import Init from './Components/grid'
+import InfoSite from './Components/infosite';
+import Program from './Components/program';
+import MoviePage from './Components/moviepage';
+import {
+    HashRouter,
+    Route,
+    Switch} from "react-router-dom";
+import BioNavbar from "./Components/navbar";
 
-function App() {
+const App = () => {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+        <HashRouter>
+            <BioNavbar />
+        <Switch>
+            <Route path="/infobook/" component={InfoSite}/>
+            <Route path="/upcoming" />
+            <Route path="/program" component={Program} />
+            <Route path="/movie" component={MoviePage} />
+            <Route exact path="/" component={Init}/>
+        </Switch>
+        </HashRouter>
     </div>
   );
 }
