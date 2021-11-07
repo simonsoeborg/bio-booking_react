@@ -27,3 +27,8 @@ function createMovie(data) {
   const res = await axios.create(``, data);
   this.setState.movie({ updatedAt: res.data.updatedAt });
 }
+
+function deleteMovie(id) {
+  const res = await axios.delete(`WHERE id = ${id}`);
+  this.setState.movie({ updatedAt: res.data.updatedAt });
+}
