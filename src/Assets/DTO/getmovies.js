@@ -1,4 +1,10 @@
 import axios from "axios";
+import { useState } from "react";
+
+const [movie, setMovie] = useState([]);
+const [movies, setMovies] = useState([]);
+
+// https://medium.com/geekculture/learn-to-use-axios-with-react-ee92829d8ed6
 
 function getMovies() {
   axios.get(``).then((data) => {
