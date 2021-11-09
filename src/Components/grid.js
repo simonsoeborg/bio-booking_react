@@ -6,17 +6,12 @@ import Cards from './cards';
 
 const GridLayout = () => {
     return (
-        <>
-            <Container fluid>
-
-                <Row className="justify-content-md-center">
-                    <Jumbotron />
-                </Row>
-
-                <Cards />
-
-            </Container>
-        </>
+        <Container fluid>
+            <Row className="justify-content-md-center">
+                <Jumbotron />
+            </Row>
+            <Cards />
+        </Container>
     )
 }
 

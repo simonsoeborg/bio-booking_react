@@ -11,7 +11,7 @@ function listPlayTimes(data) {
 
 const Cards = () => {
     return (
-        <>
+        <div>
         <Row style={{ padding: "2rem" }}><h2>Spilles i dag</h2></Row>
         <Row style={{ padding: "2rem" }} className="justify-content-md-center">
             <CardGroup>
@@ -32,7 +32,7 @@ const Cards = () => {
             </CardGroup>
 
         </Row>
-        </>
+        </div>
     )
 
 }

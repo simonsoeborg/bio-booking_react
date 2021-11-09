@@ -49,11 +49,11 @@ export const LoginPage = () => {
             Logout
           </Button>
         ) : (
-          <>
+          <div>
             <Button onClick={loginWithPopup} variant="outline-success">
               Login
             </Button>
-          </>
+          </div>
         )}
       </div>
     </div>
