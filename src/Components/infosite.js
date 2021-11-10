@@ -6,7 +6,7 @@ import SeatMatrix from './SeatMatrix'
 import SeatAvailability from './SeatAvailability'
 import MovieContext from '../contexts/MovieContext'
 
-
+/*
 function SeatModal (props){
     const [seats, setSeats] = useState([
         {
@@ -62,6 +62,12 @@ function SeatModal (props){
     );
 }
 
+ **place this in InfoSite to implement
+                         <Button variant="outline-secondary" onClick={()=> setModalShow(true)}>Valg af sæder</Button>
+                        <SeatModal show= {modalShow} onHide={() => setModalShow(false)}/>
+    **
+*/
+
 function InfoSite () {
     const [movies, EditMovies] = useState({
 		movieNames: {
@@ -78,53 +84,56 @@ function InfoSite () {
     const [modalShow, setModalShow] = useState(false);
     return(
         <Container fluid>
-            <Row style={{ justifyContent: 'center' }}>
+            <Row style={{ justifyContent: 'left' }}>
                 <Col>
                 <Image src={placehImg} thumbn style={{width: '180px', height: '260px'}}/>
                 </Col>
             </Row>
-            <Row style={{ justifyContent: 'center' }}>
-            <Col xs={3} md={2}>
-                <Form>
+            <Row style={{ justifyContent: 'left' }}>
+                <Col xs={3} md={4}>
+                    <Form>
 
-                    <Form.Group >
-                        <Form.Label>Navn</Form.Label>
-                        <Form.Control type="fullname" placeholder="Indtast dit fulde navn" />
-                    </Form.Group>
-                    <Form.Group>
-                        <Form.Label>Email address</Form.Label>
-                        <Form.Control type="email" placeholder="Enter email" />
-                    </Form.Group>
+                        <Form.Group >
+                            <Form.Label>Navn</Form.Label>
+                            <Form.Control type="fullname" placeholder="Indtast dit fulde navn" />
+                        </Form.Group>
+                        <Form.Group>
+                            <Form.Label>Email address</Form.Label>
+                            <Form.Control type="email" placeholder="Enter email" />
+                        </Form.Group>
 
-                
-                    <Form.Group>
-                        <Form.Label>Sæder</Form.Label>
-                        <Form.Select>
-                            <option >Vælg antal sæder</option>
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                            <option value="5">5</option>
-                            <option value="6">6</option>
-                        </Form.Select>
-                    </Form.Group>
-                    <p></p>
-                    <Button variant="outline-primary" type="submit">
-                        Place Booking
-                    </Button>
-                    <Button variant="outline-secondary" onClick={()=> setModalShow(true)}>Valg af sæder</Button>
-                    <SeatModal show= {modalShow} onHide={() => setModalShow(false)}/>
-                 
-                </Form>
-             
-            </Col>
-            <Row style={{ justifyContent: 'center' }}>
+                    
+                        <Form.Group>
+                            <Form.Label>Sæder</Form.Label>
+                            <Form.Select>
+                                <option >Vælg antal sæder</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                            </Form.Select>
+                        </Form.Group>
+                        <p></p>
+                        <Button variant="outline-primary" type="submit">
+                            Place Booking
+                        </Button>
+                        
+
+                    
+                    </Form>
+                </Col>
+                <Col xs={3} md={{span:4, offset: 3}}>
+                <p> Choose your seats </p>
                 <MovieContext.Provider value={{ movies, changeState: EditMovies }}>
-                    <SeatMatrix/>
                     <SeatAvailability/>
+                    <SeatMatrix/>
                 </MovieContext.Provider>
+                </Col>
+
             </Row>
+            <Row style={{ justifyContent: 'right' }}>
 
             </Row>
         </Container>

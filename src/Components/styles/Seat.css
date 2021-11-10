@@ -30,6 +30,10 @@ From https://github.com/manojnaidu619/react-movie-seat-booking
 .seat-black{
     background-color: black;
 }
+
+.seat-red{
+    background-color: red;
+}
 .seat-undefined{
     cursor: auto;
     pointer-events: none;
@@ -37,6 +41,7 @@ From https://github.com/manojnaidu619/react-movie-seat-booking
 .movie-complex p{
     text-align: center;
     font-size: 20px;
+    background-color: grey;
 }
 .movie-selector{
     width: 250px;
