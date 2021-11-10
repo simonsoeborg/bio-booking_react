@@ -2,6 +2,9 @@ import React, {useState} from 'react';
 import {Container, Row, Form, Button, Col, Card, Modal, Image} from "react-bootstrap"
 import placehImg from '../images/posterPlaceholder.jpg';
 import Seats from './seatsmap';
+import SeatMatrix from './SeatMatrix'
+import SeatAvailability from './SeatAvailability'
+import MovieContext from '../contexts/MovieContext'
 
 
 function SeatModal (props){
@@ -60,6 +63,18 @@ function SeatModal (props){
 }
 
 function InfoSite () {
+    const [movies, EditMovies] = useState({
+		movieNames: {
+			"Shang-Chi": 10,
+			"Free Guy": 8,
+			"Jaws": 11,
+			"Interstellar": 12,
+			"Dune": 9
+		},
+		moviePrice: 10,
+		totalSeats: 0,
+		seatNumbers: []
+	})
     const [modalShow, setModalShow] = useState(false);
     return(
         <Container fluid>
@@ -104,6 +119,12 @@ function InfoSite () {
                 </Form>
              
             </Col>
+            <Row style={{ justifyContent: 'center' }}>
+                <MovieContext.Provider value={{ movies, changeState: EditMovies }}>
+                    <SeatMatrix/>
+                    <SeatAvailability/>
+                </MovieContext.Provider>
+            </Row>
 
             </Row>
         </Container>
