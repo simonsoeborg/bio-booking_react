@@ -16,6 +16,6 @@ jobs:
 
     steps:
     - name: Build the Docker image
-    - run: timestamp=$(date +%Y/%m/%d-%H:%M:%S)
-    - run: pwd
-    - run: echo $timestamp
+      run: timestamp=$(date +%Y/%m/%d-%H:%M:%S)
+      run: pwd
+      run: echo $timestamp
