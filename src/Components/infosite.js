@@ -1,47 +1,45 @@
-import React, { useState } from "react";
-import {
-  Container,
-  Row,
-  Form,
-  Button,
-  Col,
-  Card,
-  Modal,
-  Image,
-} from "react-bootstrap";
-import placehImg from "../images/posterPlaceholder.jpg";
-import { MdEventSeat } from "react-icons/md";
-import Seats from "../dummydata/theaterSeats";
+import React, {useState} from 'react';
+import {Container, Row, Form, Button, Col, Card, Modal, Image} from "react-bootstrap"
+import placehImg from '../images/posterPlaceholder.jpg'
+import { MdEventSeat } from 'react-icons/md'
+import Seats from '../dummydata/theaterSeats'
+import SeatAvailability from "./SeatSelector/SeatAvailability"
+import SeatMatrix from "./SeatSelector/SeatMatrix"
+import MovieContext from './SeatSelector/contexts/MovieContext'
 
 function SeatModal(props) {
   /*  const [color, setColor] = useState([true,false]);
     const handleChange = (val) => setColor(!color); */
-  const [toggle, setToggle] = React.useState(false);
-  const toggleThis = () => {
-    setToggle(!toggle);
-  };
 
-  const buttonState = (seat) => {
-    if (!toggle) {
-      return (
-        <Button variant="outline-success" id={seat} onClick={toggleThis}>
-          <MdEventSeat />
-        </Button>
-      );
-    } else {
-      return (
-        <Button variant="outline-danger" id={seat} onClick={toggleThis}>
-          <MdEventSeat />
-        </Button>
-      );
-    }
-  };
-  return (
-    <Modal {...props} aria-labelledby="contained-modal-title-vcenter">
-      <Modal.Header closeButton color="blue">
-        <Modal.Title id="contained-modal-title-vcenter">Vælg sæde</Modal.Title>
-      </Modal.Header>
-      <Modal.Body>
+    const [toggle, setToggle] = React.useState(false);
+
+
+
+    return(
+        <Modal {...props} aria-labelledby="contained-modal-title-vcenter">
+        <Modal.Header closeButton color="blue">
+          <Modal.Title id="contained-modal-title-vcenter">
+            Vælg sæde
+          </Modal.Title>
+        </Modal.Header>
+        <Modal.Body >
+          <Container fluid>
+            
+            <SeatMatrix />
+          </Container>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button onClick={props.onHide}>Close</Button>
+        </Modal.Footer>
+      </Modal>
+
+    );
+}
+
+function InfoSite () {
+    const [modalShow, setModalShow] = useState(false);
+    return(
+
         <Container fluid>
           <Row style={{ marginBottom: "25%" }}>
             <Card className="text-center" bg="dark" text="light">

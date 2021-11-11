@@ -1,0 +1,38 @@
+# This workflow will do a clean install of node dependencies, cache/restore them, build the source code and run tests across different versions of node
+# For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
+
+name: Bio-booking CI
+
+on:
+  push:
+    branches: [ Develop ]
+  pull_request:
+    branches: [ Develop ]
+
+jobs:
+  build:
+
+    runs-on: self-hosted
+
+    strategy:
+      matrix:
+        node-version: [16.x]
+        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v2
+      with:
+        node-version: ${{ matrix.node-version }}
+        cache: 'npm'
+    - run: npm ci
+    - run: npm run build --if-present
+    - run: npm test
+    - uses: actions/checkout@v2
+    - name: Build the Docker image
+      run: timestamp=$(date +%Y/%m/%d-%H:%M:%S)
+      run: docker-compose-dev up -d --build
+      #run: docker build . --file Dockerfile.dev --tag bio-dev-image:$timestamp
+      run: docker rmi $(docker images -qa -f 'dangling=true')
+      #run: docker run -d -p 3000:3000 --name bio-booking-frontend-dev bio-dev-image:$timestamp
