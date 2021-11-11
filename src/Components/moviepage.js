@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Image, Col, Row, Container } from "react-bootstrap";
+import { Image, Col, Row, Container, ListGroup } from "react-bootstrap";
 import MovieService from "../Assets/Services/MovieService";
 import api from "../Assets/api";
 
@@ -39,11 +39,7 @@ function LoadedMoviePage(movie) {
       <Container fluid>
         <Row>
           <Col xs={6} md={4}>
-            <Image
-              id="default-img"
-              src={`${movie.movie.posterImageString}`}
-              rounded
-            />
+            <Image id="default-img" src={`${movie.movie.posterURL}`} rounded />
           </Col>
           <Col xs={6} md={6}>
             <Row>
@@ -53,15 +49,28 @@ function LoadedMoviePage(movie) {
               <p>
                 Summary
                 <br />
-                Skal hentes fra IMDB
+                {movie.movie.description}
               </p>
             </Row>
             <Row>
               <Col>
-                <h4>IMDB Rating</h4>
+                <h4>
+                  IMDB Rating:{" "}
+                  <small class="text-muted">
+                    {movie.movie.imDbRating} / 10
+                  </small>
+                </h4>
               </Col>
               <Col>
-                <h4>Movie Director, Movie Actors</h4>
+                <h4>Instruktør: </h4>
+                <p>{movie.movie.director}</p>
+                <br />
+                <h4>Stjerner: </h4>
+                <ListGroup>
+                  {movie.movie.actors.split(",").map((actor) => (
+                    <ListGroup.Item>{actor}</ListGroup.Item>
+                  ))}
+                </ListGroup>
               </Col>
             </Row>
           </Col>
@@ -73,7 +82,7 @@ function LoadedMoviePage(movie) {
             </Col>
             <Col>
               <p>
-                {movie.movie.movieFeatureDates.split(",").map((item) => (
+                {movie.movie.movieFeaturesDates.split(",").map((item) => (
                   <a href="#">{item}</a>
                 ))}
               </p>
