@@ -12,14 +12,11 @@ on:
 jobs:
   build:
     runs-on: self-hosted
-    env:
-      working-directory: ../test
+    defaults:
+      run:
+        working-directory: /home/DevOps/frontend/bio-booking_react
 
     steps:
     - uses: actions/checkout@v2
     - name: Just testing
-      run: pwd
-      working-directory: ${{env.working-directory}}
-    - uses: actions/checkout@v2
-    - name: Just testing2
       run: pwd
