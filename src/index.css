@@ -71,3 +71,11 @@ a {
 .card-group {
   justify-content: center;
 }
+
+.seatbutt {
+  background-color: cornsilk;
+}
+.seatbutt.occ{
+  background-color: chartreuse;
+}
+
