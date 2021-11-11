@@ -21,7 +21,11 @@ jobs:
     - name: refresh from Github - standard branch is set to Development - also clears any unused image
       run: sudo git pull
     - uses: actions/checkout@v2
-    - name: docker compose with Dockerfile.dev and timestamp
+    - name: timestamp
       run: timestamp=$(date +%Y/%m/%d-%H:%M:%S)
+    - uses: actions/checkout@v2
+    - name: docker compose with Dockerfile.dev and timestamp  
       run: docker-compose-dev up -d --build --project-name bio-frontend$timestamp
+    -uses: actions/checkout@v2
+    -name: clear any unused docker image
       run: docker rmi $(docker images -qa -f 'dangling=true')
