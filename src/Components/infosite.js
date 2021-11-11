@@ -5,6 +5,7 @@ import SeatMatrix from './SeatMatrix'
 import SeatAvailability from './SeatAvailability'
 import MovieContext from '../contexts/MovieContext'
 import PriceCalculator from './PriceCalculator';
+import BookingButt from './BookingButton';
 
 /*
 function SeatModal (props){
@@ -104,13 +105,8 @@ function InfoSite () {
                         <p></p>
                         <MovieContext.Provider value={{ movies, changeState: EditMovies }}>
                         <PriceCalculator/>
-                        </MovieContext.Provider>
-                        <Button variant="outline-primary" type="submit">
-                            Place Booking
-                        </Button>
-                        
-
-                    
+                        <BookingButt/>
+                        </MovieContext.Provider>                    
                     </Form>
                 </Col>
                 <Col xs={3} md={{span:4, offset: 3}}>
