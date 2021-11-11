@@ -36,3 +36,15 @@
     transform: rotate(360deg);
   }
 }
+
+.login-header {
+  padding: 2%;
+}
+
+.login-body button {
+  margin: 0.5rem;
+}
+
+.specialLink {
+  color: #000000 !important;
+}

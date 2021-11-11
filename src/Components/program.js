@@ -5,11 +5,9 @@ import { Container } from 'react-bootstrap';
 
 const Program = () => {
     return (
-        <>
-            <Container fluid>
+        <Container fluid>
 
-            </Container>
-        </>
+        </Container>
     )
 }
 

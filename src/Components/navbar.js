@@ -1,8 +1,11 @@
 import React from 'react';
-import { Nav, Navbar, Container } from 'react-bootstrap';
+import { Nav, Navbar, Container, Form } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
+import {useAuth0} from '@auth0/auth0-react';
+
 
 export const BioNavbar = () => {
+    const { user, isAuthenticated } = useAuth0()
     return (
         <div>
             <Navbar expand="lg" bg="light">
@@ -28,6 +31,11 @@ export const BioNavbar = () => {
                         </Nav>
                     </Navbar.Collapse>
                 </Container>
+                <Form className="d-flex" style={{ paddingRight: '10rem' }}>
+                    <LinkContainer to="/login">
+                        <Nav.Link className="specialLink"> { isAuthenticated ? user.name : "Login" } </Nav.Link>
+                    </LinkContainer>
+                </Form>
             </Navbar>
         </div>
     )
