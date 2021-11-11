@@ -23,8 +23,9 @@ jobs:
 
     - uses: actions/checkout@v2
     - name: docker compose with Dockerfile.dev and timestamp
-      run: timestamp=$(date +%Y/%m/%d-%H:%M:%S)  
-      run: docker-compose -f docker-compose-dev.yml --project-name bio-frontend$timestamp up -d --build
+      run: | 
+      timestamp=$(date +%Y/%m/%d-%H:%M:%S)  
+      docker-compose -f docker-compose-dev.yml --project-name bio-frontend$timestamp up -d --build
 
     - uses: actions/checkout@v2
     - name: clear any unused docker image
