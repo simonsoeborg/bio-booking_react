@@ -31,4 +31,4 @@ jobs:
 
     - uses: actions/checkout@v2
     - name: clear any unused docker image
-    run: docker rmi $(docker images -qa -f 'dangling=true')
+      run: docker rmi $(docker images -qa -f 'dangling=true')
