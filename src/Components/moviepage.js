@@ -16,10 +16,11 @@ export default class MoviePage extends Component {
   async componentDidMount() {
     let id = this.props.match.params.id;
     await this.setState({ movies: MovieService.getMovies });
+
+    // Skulle bare være fra MovieService.getMovieById(id) men funktioner med id kan ikke kaldes i setState
     await api.get(movieApiUrl + id).then((response) => {
       this.setState({ movie: response.data });
     });
-    await this.setState({ movie: this.state.movie });
   }
 
   render() {
@@ -71,7 +72,11 @@ function LoadedMoviePage(movie) {
               <h4>Visningsdage: </h4>
             </Col>
             <Col>
-              <p>{movie.movie.movieFeatureDates}</p>
+              <p>
+                {movie.movie.movieFeatureDates.split(",").map((item) => (
+                  <a href="#">{item}</a>
+                ))}
+              </p>
             </Col>
           </Col>
         </Row>
