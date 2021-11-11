@@ -11,11 +11,11 @@ on:
 
 jobs:
   build:
-
     runs-on: self-hosted
+    env:
+      working-directory: ../test
 
     steps:
-    - name: Build the Docker image
-      run: timestamp=$(date +%Y/%m/%d-%H:%M:%S)
+    - uses: actions/checkout@v2
+    - name: Just testing
       run: pwd
-      run: echo $timestamp
