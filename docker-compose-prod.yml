@@ -7,8 +7,3 @@ services:
     volumes:
       - ./src:/app/src
     dockerfile: Dockerfile.prod
-    # environment:
-    #  - REACT_APP_NAME=bio-booking-react
-    # env_file:
-    # - ./.env
-    

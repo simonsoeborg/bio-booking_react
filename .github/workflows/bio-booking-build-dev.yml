@@ -22,7 +22,9 @@ jobs:
       run: sudo git pull
 
     - uses: actions/checkout@v2
+    - name: Take down allready running docker container
+      run:  docker-compose -f docker-compose-dev.yml down
+
+    - uses: actions/checkout@v2
     - name: docker compose with Dockerfile.dev and timestamp
-      run: | 
-        timestamp=$(date +%Y/%m/%d-%H:%M:%S)  
-        docker-compose -f docker-compose-dev.yml --project-name bio-frontend$timestamp up -d --build
+      run:  docker-compose -f docker-compose-dev.yml up -d --build
