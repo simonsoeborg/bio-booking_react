@@ -1,5 +1,6 @@
 /*
 From https://github.com/manojnaidu619/react-movie-seat-booking
+and then edited for our own purposes
 */
 import React, {useContext} from 'react'
 import MovieContext from "../contexts/MovieContext"
@@ -20,12 +21,12 @@ const Seat = (props) => {
             const newMovieSeats = movies.seatNumbers.filter((seat) => {
                 return seat !== seatNumber
             })
-            seatColor.remove("seat-red")
+            seatColor.remove("seat-black")
             seatColor.add("seat-grey")
             context.changeState({...movies, seatNumbers: newMovieSeats, totalSeats: movies.totalSeats-1 })
         } else {
             seatColor.remove("seat-grey")
-            seatColor.add("seat-red")
+            seatColor.add("seat-black")
             context.changeState({...movies, seatNumbers: [...movies.seatNumbers, seatNumber], totalSeats: movies.totalSeats+1 })
         }
     }

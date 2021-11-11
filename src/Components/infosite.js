@@ -1,10 +1,10 @@
 import React, {useState} from 'react';
 import {Container, Row, Form, Button, Col, Card, Modal, Image} from "react-bootstrap"
 import placehImg from '../images/posterPlaceholder.jpg';
-import Seats from './seatsmap';
 import SeatMatrix from './SeatMatrix'
 import SeatAvailability from './SeatAvailability'
 import MovieContext from '../contexts/MovieContext'
+import PriceCalculator from './PriceCalculator';
 
 /*
 function SeatModal (props){
@@ -71,19 +71,19 @@ function SeatModal (props){
 function InfoSite () {
     const [movies, EditMovies] = useState({
 		movieNames: {
-			"Shang-Chi": 10,
-			"Free Guy": 8,
-			"Jaws": 11,
-			"Interstellar": 12,
-			"Dune": 9
+			"Shang-Chi": 100,
+			"Free Guy": 80,
+			"Jaws": 110,
+			"Interstellar": 120,
+			"Dune": 100
 		},
-		moviePrice: 10,
+		moviePrice: 100,
 		totalSeats: 0,
 		seatNumbers: []
 	})
     const [modalShow, setModalShow] = useState(false);
     return(
-        <Container fluid>
+        <Container fluid style={{backgroundColor: '#96948f'}}>
             <Row style={{ justifyContent: 'left' }}>
                 <Col>
                 <Image src={placehImg} thumbn style={{width: '180px', height: '260px'}}/>
@@ -101,21 +101,10 @@ function InfoSite () {
                             <Form.Label>Email address</Form.Label>
                             <Form.Control type="email" placeholder="Enter email" />
                         </Form.Group>
-
-                    
-                        <Form.Group>
-                            <Form.Label>Sæder</Form.Label>
-                            <Form.Select>
-                                <option >Vælg antal sæder</option>
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="4">4</option>
-                                <option value="5">5</option>
-                                <option value="6">6</option>
-                            </Form.Select>
-                        </Form.Group>
                         <p></p>
+                        <MovieContext.Provider value={{ movies, changeState: EditMovies }}>
+                        <PriceCalculator/>
+                        </MovieContext.Provider>
                         <Button variant="outline-primary" type="submit">
                             Place Booking
                         </Button>
