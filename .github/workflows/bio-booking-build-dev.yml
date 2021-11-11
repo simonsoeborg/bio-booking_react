@@ -31,8 +31,8 @@ jobs:
     - run: npm test
     - uses: actions/checkout@v2
     - name: Build the Docker image
-      run: timestamp=$(date +%Y/%m/%d-%H:%M:%S)
-      run: docker-compose-dev up -d --build
+    - run: timestamp=$(date +%Y/%m/%d-%H:%M:%S)
+    - run: docker-compose-dev up -d --build
       #run: docker build . --file Dockerfile.dev --tag bio-dev-image:$timestamp
-      run: docker rmi $(docker images -qa -f 'dangling=true')
+    - run: docker rmi $(docker images -qa -f 'dangling=true')
       #run: docker run -d -p 3000:3000 --name bio-booking-frontend-dev bio-dev-image:$timestamp
