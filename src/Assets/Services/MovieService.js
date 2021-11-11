@@ -1,6 +1,5 @@
 import { Component } from "react";
 import api from "../api";
-import movieStore from "../Stores/MovieStore";
 
 const movieApiUrl = "https://localhost:44349/api/Movie/";
 
@@ -14,13 +13,13 @@ class MovieService extends Component {
 
   getMovies = async () => {
     await api.get(movieApiUrl).then((response) => {
-      movieStore.setState({ movies: response.data });
+      this.setState({ movies: response.data });
     });
   };
 
   getMovieById = async (id) => {
     await api.get(movieApiUrl + id).then((response) => {
-      movieStore.setState({ movie: response.data });
+      this.setState({ movie: response.data });
     });
   };
 
