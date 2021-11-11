@@ -19,3 +19,7 @@ jobs:
     - uses: actions/checkout@v2
     - name: Just testing
       run: pwd
+      working-directory: ${{env.working-directory}}
+    - uses: actions/checkout@v2
+    - name: Just testing2
+      run: pwd
