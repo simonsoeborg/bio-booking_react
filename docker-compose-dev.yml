@@ -1,12 +1,13 @@
 version: "3.8"
 services:
   bio-booking-react:
-    build: .
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
     ports:
       - "3000:3000"
     volumes:
       - ./src:/app/src
-    dockerfile: Dockerfile.dev
     # environment:
     #  - REACT_APP_NAME=bio-booking-react
     # env_file:
