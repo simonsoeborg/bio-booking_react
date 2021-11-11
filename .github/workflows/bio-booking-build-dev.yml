@@ -18,5 +18,5 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    - name: Just testing
-      run: pwd
+    - name: refresh from Github - standard branch is set to Development
+      run: sudo git pull
