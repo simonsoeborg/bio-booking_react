@@ -1,0 +1,9 @@
+version: "3.8"
+services:
+  bio-booking-react:
+    build: .
+    ports:
+      - "8080:80"
+    volumes:
+      - ./src:/app/src
+    dockerfile: Dockerfile.prod

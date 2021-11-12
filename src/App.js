@@ -1,25 +1,30 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import "./App.css";
+import Init from "./Components/grid";
+import InfoSite from "./Components/infosite";
+import Program from "./Components/program";
+import Movie from "./Components/moviepage";
+import LoginPage from "./Components/loginpage";
 
-function App() {
+import { HashRouter, Route, Switch } from "react-router-dom";
+import BioNavbar from "./Components/navbar";
+
+const App = () => {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <HashRouter>
+        <BioNavbar />
+        <Switch>
+          <Route path="/infobook/" component={InfoSite} />
+          <Route path="/upcoming" />
+          <Route path="/program" component={Program} />
+          <Route path="/movie/:id" component={Movie} />
+          <Route exact path="/" component={Init} />
+          <Route path="/login" component={LoginPage} />
+        </Switch>
+      </HashRouter>
     </div>
   );
-}
+};
 
 export default App;
