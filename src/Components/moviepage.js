@@ -3,7 +3,8 @@ import { Image, Col, Row, Container, ListGroup } from "react-bootstrap";
 import MovieService from "../Assets/Services/MovieService";
 import api from "../Assets/api";
 
-const movieApiUrl = "https://localhost:44349/api/Movie/";
+// const movieApiUrl = "https://localhost:44349/api/Movie/";
+const movieApiUrl = "https://localhost:8181/api/Movie/";
 
 const initialState = {
   movies: [],
