@@ -1,20 +1,20 @@
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
 
 .carousel-item {
-  height: 700px!important;
-  width: 100%!important;
+  height: 700px !important;
+  width: 100% !important;
   overflow: hidden;
 }
 
@@ -27,12 +27,17 @@ code {
 }
 
 .card :hover {
-  border-color: var(--bs-success)!important;
+  border-color: var(--bs-success) !important;
   background-color: lightgray;
 }
 
 .col .card {
   margin: 0.5rem;
+}
+
+.a .card {
+  width: 180px;
+  height: 260px;
 }
 
 .card-img-top {
@@ -64,8 +69,8 @@ a {
 }
 
 .card-group a {
-  margin-left: 0.5rem!important;
-  margin-right: 0.5rem!important;
+  margin-left: 0.5rem !important;
+  margin-right: 0.5rem !important;
 }
 
 .card-group {
@@ -75,7 +80,6 @@ a {
 .seatbutt {
   background-color: cornsilk;
 }
-.seatbutt.occ{
+.seatbutt.occ {
   background-color: chartreuse;
 }
-
