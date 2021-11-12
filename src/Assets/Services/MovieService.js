@@ -1,7 +1,7 @@
 import { Component } from "react";
 import api from "../api";
 
-const movieApiUrl = "https://localhost:44349/api/Movie/";
+const movieApiUrl = "https://localhost:8181/api/Movie/";
 
 const initialState = {
   movies: [],
