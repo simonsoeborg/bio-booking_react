@@ -1,7 +1,7 @@
 import { Component } from "react";
 import api from "../api";
 
-const movieApiUrl = "https://localhost:44349/api/Movie/";
+const movieApiUrl = api.movieUrl;
 
 const initialState = {
   movies: [],
@@ -11,15 +11,17 @@ const initialState = {
 class MovieService extends Component {
   state = initialState;
 
-  getMovies = async () => {
-    await api.get(movieApiUrl).then((response) => {
+  async componentDidMount() {
+    await api.api.get(movieApiUrl).then((response) => {
       this.setState({ movies: response.data });
     });
-  };
 
-  getMovieById = async (id) => {
-    await api.get(movieApiUrl + id).then((response) => {
-      this.setState({ movie: response.data });
+    console.log(this.state.movies);
+  }
+
+  getMovieById = (id) => {
+    return this.state.movies.find((item) => {
+      return item.id === id;
     });
   };
 

@@ -1,12 +1,10 @@
 import React, { Component } from "react";
 import { Image, Col, Row, Container, ListGroup } from "react-bootstrap";
-import MovieService from "../Assets/Services/MovieService";
 import api from "../Assets/api";
 
-const movieApiUrl = "https://localhost:44349/api/Movie/";
+const movieApiUrl = api.movieUrl;
 
 const initialState = {
-  movies: [],
   movie: null,
 };
 
@@ -15,10 +13,8 @@ export default class MoviePage extends Component {
 
   async componentDidMount() {
     let id = this.props.match.params.id;
-    await this.setState({ movies: MovieService.getMovies });
-
     // Skulle bare være fra MovieService.getMovieById(id) men funktioner med id kan ikke kaldes i setState
-    await api.get(movieApiUrl + id).then((response) => {
+    await api.api.get(movieApiUrl + id).then((response) => {
       this.setState({ movie: response.data });
     });
   }
@@ -56,7 +52,7 @@ function LoadedMoviePage(movie) {
               <Col>
                 <h4>
                   IMDB Rating:{" "}
-                  <small class="text-muted">
+                  <small className="text-muted">
                     {movie.movie.imDbRating} / 10
                   </small>
                 </h4>
@@ -68,7 +64,7 @@ function LoadedMoviePage(movie) {
                 <h4>Stjerner: </h4>
                 <ListGroup>
                   {movie.movie.actors.split(",").map((actor) => (
-                    <ListGroup.Item>{actor}</ListGroup.Item>
+                    <ListGroup.Item key={actor}>{actor}</ListGroup.Item>
                   ))}
                 </ListGroup>
               </Col>
@@ -83,7 +79,9 @@ function LoadedMoviePage(movie) {
             <Col>
               <p>
                 {movie.movie.movieFeaturesDates.split(",").map((item) => (
-                  <a href="#">{item}</a>
+                  <a key={item} href="#/infobook/">
+                    {item}
+                  </a>
                 ))}
               </p>
             </Col>
