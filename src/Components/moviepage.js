@@ -4,7 +4,7 @@ import MovieService from "../Assets/Services/MovieService";
 import api from "../Assets/api";
 
 // const movieApiUrl = "https://localhost:44349/api/Movie/";
-const movieApiUrl = "https://localhost:44349/api/Movie/";
+const movieApiUrl = "https://130.225.170.193:8181/api/Movie/";
 
 const initialState = {
   movies: [],
