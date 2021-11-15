@@ -10,5 +10,6 @@ const api = axios.create({
 });
 
 const movieUrl = url + "Movie/";
+const userUrl = url + "User/";
 
-export default { api, url, movieUrl };
+export default { api, url, movieUrl, userUrl };
