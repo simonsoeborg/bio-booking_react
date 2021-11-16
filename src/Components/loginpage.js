@@ -2,8 +2,6 @@ import { withAuth0 } from "@auth0/auth0-react";
 import { Component } from "react";
 import { Button } from "react-bootstrap";
 import { Container, Table } from "react-bootstrap";
-import dbUserServer from "../Assets/Services/DBUserService";
-import userStore from "../Assets/Stores/UserStore";
 
 function getElementInList(arr, element) {
   return arr.filter((elem) => elem.prop === element);
