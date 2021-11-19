@@ -8,15 +8,17 @@ class MovieStore {
     makeAutoObservable(this, {
       movies: observable,
       movie: observable,
+    }, {
+      autoBind: true
     });
     this.getMovies();
-    this.getMovieById(1);
+    //this.getMovieById(1);
   }
 
   getMovies() {
     api.api.get(movieApiUrl).then((response) => {
       console.log("MovieStore get Data: " + response.data);
-      this.movies.push(response.data);
+      this.movies = response.data;
     });
   }
 

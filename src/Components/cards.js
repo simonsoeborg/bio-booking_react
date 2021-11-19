@@ -10,7 +10,7 @@ const MovieCards = () => {
     movies.push(movieStore.movies);
 
     const test = movieStore.movies;
-    console.log("Cards: " + movies);
+    console.log("Cards: " + movieStore.movies);
     // console.log(movies);
   });
 
