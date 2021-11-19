@@ -1,26 +1,30 @@
 import { makeAutoObservable, observable, runInAction } from "mobx";
-import { observer } from "mobx-react-lite";
 import api from "../api";
 
-const movieApiUrl = api.movieUrl;
+const movieApiUrl = "Movie/";
 
 class MovieStore {
   constructor() {
-    makeAutoObservable(this, { movies: observable, movie: observable });
+    makeAutoObservable(this, {
+      movies: observable,
+      movie: observable,
+    });
     this.getMovies();
+    this.getMovieById(1);
   }
 
   getMovies() {
-    fetch(movieApiUrl).then((response) =>
-      response.json().then((json) => runInAction(() => (this.movies = json)))
-    );
-    return this.movies;
+    api.api.get(movieApiUrl).then((response) => {
+      console.log("MovieStore get Data: " + response.data);
+      this.movies.push(response.data);
+    });
   }
 
   getMovieById(id) {
-    fetch(movieApiUrl + id).then((response) =>
-      response.json().then((json) => runInAction(() => (this.movie = json)))
-    );
+    api.api.get(movieApiUrl + id).then((response) => {
+      console.log(response.data);
+      this.movie = response.data;
+    });
   }
 
   updateMovie(id, model) {

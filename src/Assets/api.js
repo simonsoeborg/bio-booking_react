@@ -9,7 +9,7 @@ const api = axios.create({
   baseURL: url,
 });
 
-const movieUrl = url + "Movie/";
-const userUrl = url + "User/";
+const movieUrl = api.baseURL + "Movie/";
+const userUrl = api.baseURL + "User/";
 
 export default { api, url, movieUrl, userUrl };

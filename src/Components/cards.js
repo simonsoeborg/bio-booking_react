@@ -4,11 +4,13 @@ import movieStore from "../Assets/Stores/MovieStore";
 import { observer } from "mobx-react-lite";
 
 const MovieCards = () => {
-  const [movies, setMovies] = useState([]);
+  const [movies = [], setMovies] = useState([]);
 
   useEffect(() => {
-    const test = movieStore.getMovies();
-    console.log("cards " + movieStore.getMovies);
+    movies.push(movieStore.movies);
+
+    const test = movieStore.movies;
+    console.log("Cards: " + movies);
     // console.log(movies);
   });
 
