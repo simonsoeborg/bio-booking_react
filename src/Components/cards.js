@@ -5,8 +5,6 @@ import MovieStore from '../Assets/Stores/MovieStore';
 class MovieCards extends Component {
   state = {movies: []}
   async componentDidMount() {
-    // MovieStore.getMoviesAsync(this.state.movies);
-    // this.setState({ movies: await MovieStore.getMoviesAsync(this.movies)})
     this.setState({ movies: await MovieStore.getMoviesAsync()});
   }
 

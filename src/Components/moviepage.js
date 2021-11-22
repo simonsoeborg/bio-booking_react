@@ -1,21 +1,16 @@
 import React, { Component } from "react";
 import { Image, Col, Row, Container, ListGroup } from "react-bootstrap";
 import api from "../Assets/api";
-
-const movieApiUrl = api.movieUrl;
-
-const initialState = {
-  movie: null,
-};
+import MovieStore from '../Assets/Stores/MovieStore';
 
 export default class MoviePage extends Component {
-  state = initialState;
+  state = {
+    movie: null
+  };
 
   async componentDidMount() {
     let id = this.props.match.params.id;
-    await api.api.get(movieApiUrl + id).then((response) => {
-      this.setState({ movie: response.data });
-    });
+    this.setState({ movie: await MovieStore.getMovieById(id)})
   }
 
   render() {

@@ -1,4 +1,4 @@
-import { configure, makeAutoObservable, runInAction, toJS } from "mobx";
+import { configure, makeAutoObservable, runInAction } from "mobx";
 
 configure({ enforceActions: true })
 
@@ -25,14 +25,17 @@ class MovieStore {
   }
 
   getMovieById = async (id) => {
+    let movie = null;
     const response = await fetch(
       `https://uglyrage.com/api/Movie/${id}`
     );
     const data = await response.json();
 
     runInAction(() => {
-      this.movie = data;
+      movie = data;
     }) 
+
+    return movie;
   }
 
   updateMovie(id, model) {
