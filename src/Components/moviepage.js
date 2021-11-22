@@ -13,7 +13,6 @@ export default class MoviePage extends Component {
 
   async componentDidMount() {
     let id = this.props.match.params.id;
-    // Skulle bare være fra MovieService.getMovieById(id) men funktioner med id kan ikke kaldes i setState
     await api.api.get(movieApiUrl + id).then((response) => {
       this.setState({ movie: response.data });
     });
