@@ -1,5 +1,4 @@
 import { configure, makeAutoObservable, runInAction, toJS } from "mobx";
-const movieApiUrl = "Movie/";
 
 configure({ enforceActions: true })
 
@@ -9,18 +8,20 @@ class MovieStore {
 
   constructor() {
     makeAutoObservable(this);
-    this.getMoviesAsync();
   }
 
   getMoviesAsync = async () => {
+    let movies = [];
     const response = await fetch(
       `https://uglyrage.com/api/Movie/`
     );
     const data = await response.json();
 
     runInAction(() => {
-      this.movies = toJS(data);
+      movies = data;
     })
+
+    return movies;
   }
 
   getMovieById = async (id) => {

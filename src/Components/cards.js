@@ -2,20 +2,16 @@ import { Component } from "react";
 import { Row, Card, CardGroup } from "react-bootstrap";
 import MovieStore from '../Assets/Stores/MovieStore';
 
-const initialState = {
-  movie: null,
-  movies: [],
-}
-
 class MovieCards extends Component {
-  state = initialState;
-  movies = []
-  componentDidMount() {
-    this.setState({ movies: MovieStore.movies });
+  state = {movies: []}
+  async componentDidMount() {
+    // MovieStore.getMoviesAsync(this.state.movies);
+    // this.setState({ movies: await MovieStore.getMoviesAsync(this.movies)})
+    this.setState({ movies: await MovieStore.getMoviesAsync()});
   }
 
   render() {
-    if(this.movies.length === 0) {
+    if(this.state.movies.length === 0) {
       return <h1>Loading...</h1>
     } else {
       return (
@@ -25,24 +21,24 @@ class MovieCards extends Component {
           </Row>
           <Row style={{ padding: "2rem" }} className="justify-content-md-center">
             <CardGroup>
-              {this.state.movies.map((index) => (
+              {this.state.movies.map((movie, index) => (
                 <a
-                  key={this.state.movies[index].id}
+                  key={movie.id}
                   style={{ cursor: "pointer" }}
-                  href={"#/movie/" + this.state.movies[index].id}
+                  href={`#/movie/${movie.id}`}
                 >
                   <Card
-                    key={this.state.movies[index].id}
+                    key={index}
                     border="dark"
                     style={{ width: "15rem" }}
                   >
                     <Card.Body>
                       <Card.Img
                         variant="top"
-                        src={this.state.movies[index].posterURL}
+                        src={movie.posterURL}
                         style={{ width: "180px", height: "260px" }}
                       />
-                      <Card.Title>{this.state.movies[index].movieName}</Card.Title>
+                      <Card.Title>{movie.movieName}</Card.Title>
                       <Card.Link href="#/infobook/">18:00</Card.Link>
                     </Card.Body>
                   </Card>
@@ -55,6 +51,9 @@ class MovieCards extends Component {
     }
   }
 }
+
+export default MovieCards;
+
 
 // const MovieCards = () => {
 //   const [movies, setMovies] = useState([]);
@@ -113,4 +112,3 @@ class MovieCards extends Component {
 
 // const movieCards = new MovieCards({});
 
-export default MovieCards;
