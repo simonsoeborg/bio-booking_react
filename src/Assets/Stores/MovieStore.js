@@ -1,36 +1,41 @@
-import { makeAutoObservable, observable, runInAction } from "mobx";
-import api from "../api";
-
+import { configure, makeAutoObservable, runInAction, toJS } from "mobx";
 const movieApiUrl = "Movie/";
 
+configure({ enforceActions: true })
+
 class MovieStore {
+  movies = [];
+  movie = null;
+
   constructor() {
-    makeAutoObservable(this, {
-      movies: observable,
-      movie: observable,
-    }, {
-      autoBind: true
-    });
-    this.getMovies();
-    //this.getMovieById(1);
+    makeAutoObservable(this);
+    this.getMoviesAsync();
   }
 
-  getMovies() {
-    api.api.get(movieApiUrl).then((response) => {
-      console.log("MovieStore get Data: " + response.data);
-      this.movies = response.data;
-    });
+  getMoviesAsync = async () => {
+    const response = await fetch(
+      `https://uglyrage.com/api/Movie/`
+    );
+    const data = await response.json();
+
+    runInAction(() => {
+      this.movies = toJS(data);
+    })
   }
 
-  getMovieById(id) {
-    api.api.get(movieApiUrl + id).then((response) => {
-      console.log(response.data);
-      this.movie = response.data;
-    });
+  getMovieById = async (id) => {
+    const response = await fetch(
+      `https://uglyrage.com/api/Movie/${id}`
+    );
+    const data = await response.json();
+
+    runInAction(() => {
+      this.movie = data;
+    }) 
   }
 
   updateMovie(id, model) {
-    fetch(movieApiUrl + id, {
+    fetch(`https://uglyrage.com/api/Movie/${id}`, {
       method: "PUT",
       mode: "cors",
       body: model,
@@ -38,7 +43,7 @@ class MovieStore {
   }
 
   postMovie(model) {
-    fetch(movieApiUrl, {
+    fetch(`https://uglyrage.com/api/Movie/${model}`, {
       method: "POST",
       mode: "cors",
       body: model,
@@ -46,13 +51,11 @@ class MovieStore {
   }
 
   deleteMovie(id) {
-    fetch(movieApiUrl + id, {
+    fetch(`https://uglyrage.com/api/Movie/${id}`, {
       method: "DELETE",
       mode: "cors",
     }).then((response) => console.log(response));
   }
-}
+}  
 
-const movieStore = new MovieStore();
-
-export default movieStore;
+export default new MovieStore();
