@@ -1,57 +1,46 @@
+import { observer } from "mobx-react-lite";
 import { Component } from "react";
 import { Row, Card, CardGroup } from "react-bootstrap";
-import MovieStore from '../Assets/Stores/MovieStore';
+import { ms } from "../Assets/Stores/MovieStore";
 
-class MovieCards extends Component {
-  state = {movies: []}
-  async componentDidMount() {
-    this.setState({ movies: await MovieStore.getMoviesAsync()});
+const MovieCards = () => {
+  if (!ms.Movies || ms.Movies.length === 0) {
+    return <h1>Loading...</h1>;
+  } else {
+    return (
+      <div>
+        <Row style={{ padding: "2rem" }}>
+          <h2>Spilles i dag</h2>
+        </Row>
+        <Row style={{ padding: "2rem" }} className="justify-content-md-center">
+          <CardGroup>
+            {ms.Movies.map((movie, index) => (
+              <a
+                key={movie.id}
+                style={{ cursor: "pointer" }}
+                href={`#/movie/${movie.id}`}
+              >
+                <Card key={index} border="dark" style={{ width: "15rem" }}>
+                  <Card.Body>
+                    <Card.Img
+                      variant="top"
+                      src={movie.posterURL}
+                      style={{ width: "180px", height: "260px" }}
+                    />
+                    <Card.Title>{movie.movieName}</Card.Title>
+                    <Card.Link href="#/infobook/">18:00</Card.Link>
+                  </Card.Body>
+                </Card>
+              </a>
+            ))}
+          </CardGroup>
+        </Row>
+      </div>
+    );
   }
+};
 
-  render() {
-    if(this.state.movies.length === 0) {
-      return <h1>Loading...</h1>
-    } else {
-      return (
-        <div>
-          <Row style={{ padding: "2rem" }}>
-            <h2>Spilles i dag</h2>
-          </Row>
-          <Row style={{ padding: "2rem" }} className="justify-content-md-center">
-            <CardGroup>
-              {this.state.movies.map((movie, index) => (
-                <a
-                  key={movie.id}
-                  style={{ cursor: "pointer" }}
-                  href={`#/movie/${movie.id}`}
-                >
-                  <Card
-                    key={index}
-                    border="dark"
-                    style={{ width: "15rem" }}
-                  >
-                    <Card.Body>
-                      <Card.Img
-                        variant="top"
-                        src={movie.posterURL}
-                        style={{ width: "180px", height: "260px" }}
-                      />
-                      <Card.Title>{movie.movieName}</Card.Title>
-                      <Card.Link href="#/infobook/">18:00</Card.Link>
-                    </Card.Body>
-                  </Card>
-                </a>
-              ))}
-            </CardGroup>
-          </Row>
-        </div>
-      );
-    }
-  }
-}
-
-export default MovieCards;
-
+export default observer(MovieCards);
 
 // const MovieCards = () => {
 //   const [movies, setMovies] = useState([]);
@@ -60,7 +49,6 @@ export default MovieCards;
 //     console.log(movieStore.getMoviesAsync)
 
 //   });
-
 
 // };
 
@@ -109,4 +97,3 @@ export default MovieCards;
 // }
 
 // const movieCards = new MovieCards({});
-
