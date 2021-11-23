@@ -1,6 +1,6 @@
 import { configure, makeAutoObservable, runInAction } from "mobx";
 
-configure({ enforceActions: true })
+configure({ enforceActions: true });
 
 class MovieStore {
   movies = [];
@@ -12,31 +12,27 @@ class MovieStore {
 
   getMoviesAsync = async () => {
     let movies = [];
-    const response = await fetch(
-      `https://uglyrage.com/api/Movie/`
-    );
+    const response = await fetch(`https://uglyrage.com/api/Movie/`);
     const data = await response.json();
 
     runInAction(() => {
       movies = data;
-    })
+    });
 
     return movies;
-  }
+  };
 
   getMovieById = async (id) => {
     let movie = null;
-    const response = await fetch(
-      `https://uglyrage.com/api/Movie/${id}`
-    );
+    const response = await fetch(`https://uglyrage.com/api/Movie/${id}`);
     const data = await response.json();
 
     runInAction(() => {
       movie = data;
-    }) 
+    });
 
     return movie;
-  }
+  };
 
   updateMovie(id, model) {
     fetch(`https://uglyrage.com/api/Movie/${id}`, {
@@ -54,12 +50,16 @@ class MovieStore {
     }).then((response) => console.log(response));
   }
 
-  deleteMovie(id) {
-    fetch(`https://uglyrage.com/api/Movie/${id}`, {
+  deleteMovie = async (id) => {
+    const res = await fetch(`https://uglyrage.com/api/Movie/${id}`, {
       method: "DELETE",
       mode: "cors",
-    }).then((response) => console.log(response));
-  }
-}  
+    });
+
+    if (res.state !== 204) {
+      console.log(res);
+    }
+  };
+}
 
 export default new MovieStore();
