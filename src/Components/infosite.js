@@ -9,19 +9,20 @@ import BookingButt from './BookingButton';
 
 function InfoSite() {
     const [movies, EditMovies] = useState({
-        movieNames: {
-            "Shang-Chi": 100,
-            "Free Guy": 80,
-            "Jaws": 110,
-            "Interstellar": 120,
-            "Dune": 100
-        },
-        moviePrice: 100,
-        totalSeats: 0,
-        seatNumbers: []
-    })
-    return (
-        <Container fluid style={{ backgroundColor: '#96948f' }}>
+		movieNames: {
+			"Shang-Chi": 100,
+			"Free Guy": 80,
+			"Jaws": 110,
+			"Interstellar": 120,
+			"Dune": 100
+		},
+		moviePrice: 100,
+		totalSeats: 0,
+		seatNumbers: [],
+        bookedSeats: []
+	})
+    return(
+        <Container fluid style={{backgroundColor: '#96948f'}}>
             <Row style={{ justifyContent: 'left' }}>
                 <Col>
                     <Image src={placehImg} thumbn style={{ width: '180px', height: '260px' }} />

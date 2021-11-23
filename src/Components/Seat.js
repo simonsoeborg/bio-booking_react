@@ -31,6 +31,10 @@ const Seat = (props) => {
         }
     }
 
+    // const setBooked = (seatNumbers) => {
+    //     context.changeState({...movies, bookedSeats: seatNumbers})
+    // }
+
     return (
         <div className="col-2 col-md-2">
             <div className={`seat seat-${seatNumber} ${seatStatus}`}
