@@ -8,30 +8,27 @@ class MovieStore {
 
   constructor() {
     makeAutoObservable(this);
+    this.getMoviesAsync();
+  }
+
+  get Movies() {
+    return this.movies;
+  }
+
+  get Movie() {
+    return this.movie;
   }
 
   getMoviesAsync = async () => {
-    let movies = [];
     const response = await fetch(`https://uglyrage.com/api/Movie/`);
     const data = await response.json();
-
-    runInAction(() => {
-      movies = data;
-    });
-
-    return movies;
+    this.movies = data;
   };
 
   getMovieById = async (id) => {
-    let movie = null;
     const response = await fetch(`https://uglyrage.com/api/Movie/${id}`);
     const data = await response.json();
-
-    runInAction(() => {
-      movie = data;
-    });
-
-    return movie;
+    this.movie = data;
   };
 
   updateMovie(id, model) {
@@ -56,10 +53,11 @@ class MovieStore {
       mode: "cors",
     });
 
-    if (res.state !== 204) {
+    if (res.status !== 204) {
       console.log(res);
     }
+    this.getMoviesAsync();
   };
 }
 
-export default new MovieStore();
+export const ms = new MovieStore();

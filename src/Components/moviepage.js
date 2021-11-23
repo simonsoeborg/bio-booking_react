@@ -1,45 +1,41 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
+import { observer } from "mobx-react-lite";
 import { Image, Col, Row, Container, ListGroup } from "react-bootstrap";
-import api from "../Assets/api";
-import MovieStore from '../Assets/Stores/MovieStore';
+import { useParams } from "react-router";
+import { ms } from "../Assets/Stores/MovieStore";
 
-export default class MoviePage extends Component {
-  state = {
-    movie: null
-  };
-
-  async componentDidMount() {
-    let id = this.props.match.params.id;
-    this.setState({ movie: await MovieStore.getMovieById(id)})
+const MoviePage = () => {
+  const { id } = useParams();
+  const [hasLoaded, setHasLoaded] = useState(false);
+  if (!hasLoaded) {
+    setHasLoaded(true);
+    ms.getMovieById(id);
   }
-
-  render() {
-    if (this.state.movie === null) {
-      return <h1>Loading...</h1>;
-    } else {
-      return <LoadedMoviePage movie={this.state.movie} />;
-    }
+  if (ms.Movie === null) {
+    return <h1>Loading...</h1>;
+  } else {
+    return <LoadedMoviePage />;
   }
-}
+};
 
-function LoadedMoviePage(movie) {
-  if (!movie) return <h1>Loading....</h1>;
+function LoadedMoviePage() {
+  if (!ms.Movie) return <h1>Loading....</h1>;
   else {
     return (
       <Container fluid>
         <Row>
           <Col xs={6} md={4}>
-            <Image id="default-img" src={`${movie.movie.posterURL}`} rounded />
+            <Image id="default-img" src={`${ms.Movie.posterURL}`} rounded />
           </Col>
           <Col xs={6} md={6}>
             <Row>
-              <h1>{movie.movie.movieName}</h1>
+              <h1>{ms.Movie.movieName}</h1>
             </Row>
             <Row>
               <p>
                 Summary
                 <br />
-                {movie.movie.description}
+                {ms.Movie.description}
               </p>
             </Row>
             <Row>
@@ -47,17 +43,17 @@ function LoadedMoviePage(movie) {
                 <h4>
                   IMDB Rating:{" "}
                   <small className="text-muted">
-                    {movie.movie.imDbRating} / 10
+                    {ms.Movie.imDbRating} / 10
                   </small>
                 </h4>
               </Col>
               <Col>
                 <h4>Instruktør: </h4>
-                <p>{movie.movie.director}</p>
+                <p>{ms.Movie.director}</p>
                 <br />
                 <h4>Stjerner: </h4>
                 <ListGroup>
-                  {movie.movie.actors.split(",").map((actor) => (
+                  {ms.Movie.actors.split(",").map((actor) => (
                     <ListGroup.Item key={actor}>{actor}</ListGroup.Item>
                   ))}
                 </ListGroup>
@@ -72,7 +68,7 @@ function LoadedMoviePage(movie) {
             </Col>
             <Col>
               <p>
-                {movie.movie.movieFeaturesDates.split(",").map((item) => (
+                {ms.Movie.movieFeaturesDates.split(",").map((item) => (
                   <a key={item} href="#/infobook/">
                     {item}
                   </a>
@@ -85,3 +81,5 @@ function LoadedMoviePage(movie) {
     );
   }
 }
+
+export default observer(MoviePage);
