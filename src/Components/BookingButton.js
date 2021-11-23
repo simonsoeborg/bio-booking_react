@@ -9,15 +9,21 @@ const BookingButt = (props) =>{
     const { movies } = useContext(MovieContext)
     const context = useContext(MovieContext)
 
+    const seatNumber = props.seatno
 
-    const bookingClickHandler=()=>{
+
+
+    const bookingClickHandler=(seatNumbers)=>{
+        console.log("Selected seats: " + movies.seatNumbers)
+        context.changeState({...movies, bookedSeats: movies.seatNumbers})
+        console.log("Booked seats: " + movies.bookedSeats)
 
     }
     return(
     <div>
         <Button variant="success"
         onClick={bookingClickHandler}>
-            Place booking
+            Place booking for {movies.totalSeats} seats
         </Button>
     </div>
     )

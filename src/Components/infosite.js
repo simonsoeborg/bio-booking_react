@@ -80,7 +80,8 @@ function InfoSite () {
 		},
 		moviePrice: 100,
 		totalSeats: 0,
-		seatNumbers: []
+		seatNumbers: [],
+        bookedSeats: []
 	})
     const [modalShow, setModalShow] = useState(false);
     return(
