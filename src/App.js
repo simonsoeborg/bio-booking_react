@@ -7,6 +7,7 @@ import Movie from "./Components/moviepage";
 import LoginPage from "./Components/loginpage";
 import AdminPage from "./Components/Admin";
 import EditMovie from "./Components/AdminComponents/PartialComponents/EditMovie";
+import CreateMovie from "./Components/AdminComponents/PartialComponents/CreateMovie";
 
 import { HashRouter, Route, Switch } from "react-router-dom";
 import BioNavbar from "./Components/navbar";
@@ -25,6 +26,7 @@ const App = () => {
           <Route path="/login" component={LoginPage} />
           <Route path="/admin" component={AdminPage} />
           <Route path="/editmovie/:id" component={EditMovie} />
+          <Route path="/createmovie/" component={CreateMovie} />
         </Switch>
       </HashRouter>
     </div>
