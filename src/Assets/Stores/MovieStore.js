@@ -1,6 +1,6 @@
-import { configure, makeAutoObservable, runInAction, toJS } from "mobx";
+import { configure, makeAutoObservable, runInAction } from "mobx";
 
-configure({ enforceActions: true })
+configure({ enforceActions: true });
 
 class MovieStore {
   movies = [];
@@ -8,55 +8,78 @@ class MovieStore {
 
   constructor() {
     makeAutoObservable(this);
+    this.getMoviesAsync();
+  }
+
+  get Movies() {
+    return this.movies;
+  }
+
+  get Movie() {
+    return this.movie;
   }
 
   getMoviesAsync = async () => {
-    let movies = [];
-    const response = await fetch(
-      `https://uglyrage.com/api/Movie/`
-    );
+    const response = await fetch(`https://uglyrage.com/api/Movie/`);
     const data = await response.json();
-
-    runInAction(() => {
-      movies = data;
-    })
-
-    return movies;
-  }
+    this.movies = data;
+  };
 
   getMovieById = async (id) => {
-    const response = await fetch(
-      `https://uglyrage.com/api/Movie/${id}`
-    );
+    const response = await fetch(`https://uglyrage.com/api/Movie/${id}`);
     const data = await response.json();
+    this.movie = data;
+  };
 
-    runInAction(() => {
-      this.movie = data;
-    }) 
-  }
-
-  updateMovie(id, model) {
-    fetch(`https://uglyrage.com/api/Movie/${id}`, {
+  updateMovie = async (id, model) => {
+    console.log(model)
+    const headers = new Headers();
+    headers.append("Content-type", "application/json");
+    var options = {
       method: "PUT",
-      mode: "cors",
-      body: model,
-    }).then((response) => console.log(response));
+      headers,
+      body: model
+    }
+    const request = new Request(`https://uglyrage.com/api/Movie/${id}`, options);
+    const response = await fetch(request);
+    if (response.status !== 204) {
+      console.log(response);
+    }
+
+    this.getMoviesAsync();
+    return response.status;
   }
 
-  postMovie(model) {
-    fetch(`https://uglyrage.com/api/Movie/${model}`, {
+  postMovie = async (model) => {
+    console.log(model)
+    const headers = new Headers();
+    headers.append("Content-type", "application/json");
+    var options = {
       method: "POST",
-      mode: "cors",
-      body: model,
-    }).then((response) => console.log(response));
+      headers,
+      body: model
+    }
+    const request = new Request(`https://uglyrage.com/api/Movie/`, options);
+    const response = await fetch(request);
+    if (response.status !== 204) {
+      console.log(response);
+    }
+
+    this.getMoviesAsync();
+    return response.status;
   }
 
-  deleteMovie(id) {
-    fetch(`https://uglyrage.com/api/Movie/${id}`, {
+  deleteMovie = async (id) => {
+    const res = await fetch(`https://uglyrage.com/api/Movie/${id}`, {
       method: "DELETE",
       mode: "cors",
-    }).then((response) => console.log(response));
-  }
-}  
+    });
 
-export default new MovieStore();
+    if (res.status !== 204) {
+      console.log(res);
+    }
+    this.getMoviesAsync();
+  };
+}
+
+export const ms = new MovieStore();

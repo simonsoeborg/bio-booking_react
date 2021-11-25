@@ -48,3 +48,17 @@
 .specialLink {
   color: #000000 !important;
 }
+
+.TableEditBtn {
+  margin-right: 1rem;
+}
+
+.MovieAddToDB {
+  margin: 1rem;
+}
+
+.ListGroupBtn:hover {
+  background-color: lightgray;
+  color: lightcoral;
+  cursor: pointer;
+}

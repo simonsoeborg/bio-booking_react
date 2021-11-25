@@ -3,9 +3,8 @@ import { useState } from "react";
 import { useHistory, useParams } from "react-router";
 import { Container, Form, Image, Col, Row, Button, Modal } from "react-bootstrap";
 import { ms } from "../../../Assets/Stores/MovieStore";
-import DefaultMovie from '../../../images/default-movie.jpg'
 
-const CreateMovie = () => {
+const EditMovie = () => {
   const { id } = useParams();
   const [hasLoaded, setHasLoaded] = useState(false);
   const [success, setSuccess] = useState(false)
@@ -25,8 +24,8 @@ const CreateMovie = () => {
     history.push("/admin")
   }
 
-  const onFormSubmit = (data) => {
-    let res = ms.postMovie(data);
+  const onFormSubmit = (id, data) => {
+    let res = ms.updateMovie(id, data);
     if(res === 204) {
       setSuccess(true)
     } else {
@@ -36,6 +35,8 @@ const CreateMovie = () => {
     handleOnShow();
   };
 
+  if (!ms.Movie) return <h1>Loading....</h1>;
+  else {
     return (
       <Container>
         <Row>
@@ -43,7 +44,7 @@ const CreateMovie = () => {
             <Container style={{ padding: "1rem" }}>
               <Image
                 variant="top"
-                src={ms.Movie.posterURL ? null : DefaultMovie}
+                src={ms.Movie.posterURL}
                 style={{ width: "180px", height: "260px" }}
               />
             </Container>
@@ -59,10 +60,20 @@ const CreateMovie = () => {
             >
               <Form>
                 <Form.Group>
+                  <Form.Label>Id</Form.Label>
+                  <Form.Control
+                    size="sm" 
+                    type="text"
+                    placeholder={ms.Movie.id}
+                    readOnly
+                  />
+                </Form.Group>
+                <Form.Group>
                   <Form.Label>Titel</Form.Label>
                   <Form.Control
                     size="sm" 
                     type="text"
+                    defaultValue={ms.Movie.movieName}
                     onChange={(e) => {
                       ms.Movie.movieName = e.target.value;
                     }}
@@ -73,6 +84,7 @@ const CreateMovie = () => {
                   <Form.Control
                     size="sm" 
                     type="text"
+                    defaultValue={ms.Movie.movieReleaseDate}
                     onChange={(e) => {
                       ms.Movie.movieReleaseDate = e.target.value;
                     }}
@@ -83,6 +95,7 @@ const CreateMovie = () => {
                   <Form.Control
                     size="sm" 
                     type="text"
+                    defaultValue={ms.Movie.movieFeaturesDates}
                     onChange={(e) => {
                       ms.Movie.movieFeaturesDates = e.target.value;
                     }}
@@ -93,6 +106,7 @@ const CreateMovie = () => {
                   <Form.Control
                     size="sm" 
                     type="text"
+                    defaultValue={ms.Movie.imDbRating}
                     onChange={(e) => {
                       ms.Movie.imDbRating = e.target.value;
                     }}
@@ -103,6 +117,7 @@ const CreateMovie = () => {
                   <Form.Control
                     size="sm" 
                     type="text"
+                    defaultValue={ms.Movie.movieDuration}
                     onChange={(e) => {
                       ms.Movie.movieDuration = e.target.value;
                     }}
@@ -113,6 +128,7 @@ const CreateMovie = () => {
                   <Form.Control
                     size="sm" 
                     type="text"
+                    defaultValue={ms.Movie.posterURL}
                     onChange={(e) => {
                       ms.Movie.posterURL = e.target.value;
                     }}
@@ -123,6 +139,7 @@ const CreateMovie = () => {
                   <Form.Control
                     size="sm" 
                     type="text"
+                    defaultValue={ms.Movie.director}
                     onChange={(e) => {
                       ms.Movie.director = e.target.value;
                     }}
@@ -133,6 +150,7 @@ const CreateMovie = () => {
                   <Form.Control
                     size="sm" 
                     type="text"
+                    defaultValue={ms.Movie.actors}
                     onChange={(e) => {
                       ms.Movie.actors = e.target.value;
                     }}
@@ -143,6 +161,7 @@ const CreateMovie = () => {
                   <Form.Control
                     size="sm"
                     as="textarea"
+                    defaultValue={ms.Movie.description}
                     style={{ height: "150px" }}
                     onChange={(e) => {
                       ms.Movie.description = e.target.value;
@@ -154,9 +173,9 @@ const CreateMovie = () => {
                     type="submit"
                     variant="outline-success"
                     style={{ margin: '1rem'}}
-                    onClick={() => onFormSubmit(JSON.stringify(ms.Movie))}
+                    onClick={() => onFormSubmit(ms.Movie.id, JSON.stringify(ms.Movie))}
                   >
-                    Opret
+                    Rediger
                   </Button>
                 </div>
               </Form>
@@ -167,7 +186,7 @@ const CreateMovie = () => {
           <Modal.Header closeButton>
             { success ? <Modal.Title>Error!</Modal.Title> : <Modal.Header>Success!</Modal.Header>}
           </Modal.Header>
-            { success ? <Modal.Body>Der gik noget galt, da vi prøvede at oprette: { ms.Movie.movieName } </Modal.Body> : <Modal.Body>{ ms.Movie.movieName } er nu oprettet! </Modal.Body>}
+            { success ? <Modal.Body>Der gik noget galt, da vi prøvede at opdatere: { ms.Movie.movieName } </Modal.Body> : <Modal.Body>{ ms.Movie.movieName } er nu opdateret! </Modal.Body>}
           <Modal.Footer>
             <Button variant="secondary" onClick={handleOnClose && handleReturnClick}>
               Luk
@@ -175,7 +194,10 @@ const CreateMovie = () => {
           </Modal.Footer>
         </Modal>
       </Container>
+
+
     );
+  }
 };
 
-export default observer(CreateMovie);
+export default observer(EditMovie);
