@@ -1,47 +1,38 @@
 import { observer } from "mobx-react-lite";
 import { useState } from "react";
-import { useParams } from "react-router";
-import { Container, Form, Image, Col, Row, Button } from "react-bootstrap";
+import { useHistory, useParams } from "react-router";
+import { Container, Form, Image, Col, Row, Button, Modal } from "react-bootstrap";
 import { ms } from "../../../Assets/Stores/MovieStore";
 
 const EditMovie = () => {
   const { id } = useParams();
   const [hasLoaded, setHasLoaded] = useState(false);
+  const [success, setSuccess] = useState(false)
 
-  const [movieName, setMovieName] = useState("");
-  const [movieRelease, setMovieRelease] = useState("");
-  const [movieFeatures, setMovieFeatures] = useState("");
-  const [imdbRating, setImdbRating] = useState("");
-  const [movieDuration, setMovieDuration] = useState("");
-  const [posterURL, setPosterURL] = useState("");
-  const [director, setDirector] = useState("");
-  const [actors, setActors] = useState("");
-  const [description, setDescription] = useState("");
+  const [showModal, setShowModal] = useState(false);
+  const handleOnClose = () => setShowModal(false);
+  const handleOnShow = () => setShowModal(true);
+
+  const history = useHistory();
+
   if (!hasLoaded) {
     setHasLoaded(true);
     ms.getMovieById(id);
   }
 
-  const onFormSubmit = () => {
-    const toObject = {
-      movieName: movieName ? null || "" : ms.Movie.movieName,
-      movieReleaseDate: movieRelease ? null || "" : ms.Movie.movieReleaseDate,
-      movieFeaturesDates: movieFeatures
-        ? null || ""
-        : ms.Movie.movieFeaturesDates,
-      imDbRating: imdbRating ? null || "" : ms.Movie.imDbRating,
-      movieDuration: movieDuration ? null || "" : ms.Movie.movieDuration,
-      posterURL: posterURL ? null || "" : ms.Movie.posterURL,
-      director: director ? null || "" : ms.Movie.director,
-      actors: actors ? null || "" : ms.Movie.actors,
-      description: description ? null || "" : ms.Movie.description,
-    };
+  const handleReturnClick = () => {
+    history.push("/admin")
+  }
 
-    const toJSONObject = JSON.stringify(toObject);
+  const onFormSubmit = (id, data) => {
+    let res = ms.updateMovie(id, data);
+    if(res === 204) {
+      setSuccess(true)
+    } else {
+      setSuccess(false)
+    }
 
-    console.log(toJSONObject);
-
-    ms.updateMovie(ms.movie.id, toJSONObject);
+    handleOnShow();
   };
 
   if (!ms.Movie) return <h1>Loading....</h1>;
@@ -71,6 +62,7 @@ const EditMovie = () => {
                 <Form.Group>
                   <Form.Label>Id</Form.Label>
                   <Form.Control
+                    size="sm" 
                     type="text"
                     placeholder={ms.Movie.id}
                     readOnly
@@ -79,106 +71,131 @@ const EditMovie = () => {
                 <Form.Group>
                   <Form.Label>Titel</Form.Label>
                   <Form.Control
+                    size="sm" 
                     type="text"
                     defaultValue={ms.Movie.movieName}
                     onChange={(e) => {
-                      setMovieName(e.target.value);
+                      ms.Movie.movieName = e.target.value;
                     }}
                   />
                 </Form.Group>
                 <Form.Group>
                   <Form.Label>Udgivelsesår</Form.Label>
                   <Form.Control
+                    size="sm" 
                     type="text"
                     defaultValue={ms.Movie.movieReleaseDate}
                     onChange={(e) => {
-                      setMovieRelease(e.target.value);
+                      ms.Movie.movieReleaseDate = e.target.value;
                     }}
                   />
                 </Form.Group>
                 <Form.Group>
                   <Form.Label>Visningstider</Form.Label>
                   <Form.Control
+                    size="sm" 
                     type="text"
                     defaultValue={ms.Movie.movieFeaturesDates}
                     onChange={(e) => {
-                      setMovieFeatures(e.target.value);
+                      ms.Movie.movieFeaturesDates = e.target.value;
                     }}
                   />
                 </Form.Group>
                 <Form.Group>
                   <Form.Label>IMDb Rating</Form.Label>
                   <Form.Control
+                    size="sm" 
                     type="text"
                     defaultValue={ms.Movie.imDbRating}
                     onChange={(e) => {
-                      setImdbRating(e.target.value);
+                      ms.Movie.imDbRating = e.target.value;
                     }}
                   />
                 </Form.Group>
                 <Form.Group>
                   <Form.Label>Varighed</Form.Label>
                   <Form.Control
+                    size="sm" 
                     type="text"
                     defaultValue={ms.Movie.movieDuration}
                     onChange={(e) => {
-                      setMovieDuration(e.target.value);
+                      ms.Movie.movieDuration = e.target.value;
                     }}
                   />
                 </Form.Group>
                 <Form.Group>
                   <Form.Label>URL til Poster</Form.Label>
                   <Form.Control
+                    size="sm" 
                     type="text"
                     defaultValue={ms.Movie.posterURL}
                     onChange={(e) => {
-                      setPosterURL(e.target.value);
+                      ms.Movie.posterURL = e.target.value;
                     }}
                   />
                 </Form.Group>
                 <Form.Group>
                   <Form.Label>Instruktør(er)</Form.Label>
                   <Form.Control
+                    size="sm" 
                     type="text"
                     defaultValue={ms.Movie.director}
                     onChange={(e) => {
-                      setDirector(e.target.value);
+                      ms.Movie.director = e.target.value;
                     }}
                   />
                 </Form.Group>
                 <Form.Group>
                   <Form.Label>Skuespiller(e)</Form.Label>
                   <Form.Control
+                    size="sm" 
                     type="text"
                     defaultValue={ms.Movie.actors}
                     onChange={(e) => {
-                      setActors(e.target.value);
+                      ms.Movie.actors = e.target.value;
                     }}
                   />
                 </Form.Group>
                 <Form.Group>
                   <Form.Label>Beskrivelse</Form.Label>
                   <Form.Control
+                    size="sm"
                     as="textarea"
                     defaultValue={ms.Movie.description}
                     style={{ height: "150px" }}
                     onChange={(e) => {
-                      setDescription(e.target.value);
+                      ms.Movie.description = e.target.value;
                     }}
                   />
                 </Form.Group>
-                <Button
-                  type="submit"
-                  variant="outline-success"
-                  onClick={() => onFormSubmit()}
-                >
-                  Rediger
-                </Button>
+                <div className="text-center">
+                  <Button
+                    type="submit"
+                    variant="outline-success"
+                    style={{ margin: '1rem'}}
+                    onClick={() => onFormSubmit(ms.Movie.id, JSON.stringify(ms.Movie))}
+                  >
+                    Rediger
+                  </Button>
+                </div>
               </Form>
             </Container>
           </Col>
         </Row>
+        <Modal show={showModal} onHide={handleOnClose}>
+          <Modal.Header closeButton>
+            { success ? <Modal.Title>Error!</Modal.Title> : <Modal.Header>Success!</Modal.Header>}
+          </Modal.Header>
+            { success ? <Modal.Body>Der gik noget galt, da vi prøvede at opdatere: { ms.Movie.movieName } </Modal.Body> : <Modal.Body>{ ms.Movie.movieName } er nu opdateret! </Modal.Body>}
+          <Modal.Footer>
+            <Button variant="secondary" onClick={handleOnClose && handleReturnClick}>
+              Luk
+            </Button>
+          </Modal.Footer>
+        </Modal>
       </Container>
+
+
     );
   }
 };

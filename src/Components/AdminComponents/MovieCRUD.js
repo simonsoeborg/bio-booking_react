@@ -1,6 +1,5 @@
 // List all movies in a table, Have Delete and Edit buttons from each movie, on table row click navigate to movie details
 import { observer } from "mobx-react-lite";
-import { Component } from "react";
 import { Table, Button, Container } from "react-bootstrap";
 import { useHistory } from "react-router";
 import { ms } from "../../Assets/Stores/MovieStore";
@@ -13,16 +12,21 @@ const initialState = {
 const MovieAdmin = () => {
   const history = useHistory();
 
-  const routeChange = (id) => {
+  const routeEditChange = (id) => {
     let path = `./editmovie/${id}`;
     history.push(path);
   };
+
+  const routeCreateChange = () => {
+    let path = `./createmovie/`;
+    history.push(path);
+  }
 
   if (!ms.Movies || ms.Movies.length < 1) return <h1>Loading..</h1>;
   else
     return (
       <Container>
-        <Button className="MovieAddToDB" variant="outline-success">
+        <Button className="MovieAddToDB" variant="outline-success" onClick={() => routeCreateChange()}>
           Tilføj film
         </Button>
         <Table striped bordered hover>
@@ -44,7 +48,7 @@ const MovieAdmin = () => {
                   <Button
                     className="TableEditBtn"
                     variant="outline-warning"
-                    onClick={() => routeChange(movie.id)}
+                    onClick={() => routeEditChange(movie.id)}
                   >
                     Edit
                   </Button>

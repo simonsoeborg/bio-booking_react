@@ -31,23 +31,42 @@ class MovieStore {
     this.movie = data;
   };
 
-  updateMovie(id, model) {
-    const response = fetch(`https://uglyrage.com/api/Movie/${id}`, {
+  updateMovie = async (id, model) => {
+    console.log(model)
+    const headers = new Headers();
+    headers.append("Content-type", "application/json");
+    var options = {
       method: "PUT",
-      mode: "cors",
-      body: model,
-    });
-    if (response.status !== 200) {
+      headers,
+      body: model
+    }
+    const request = new Request(`https://uglyrage.com/api/Movie/${id}`, options);
+    const response = await fetch(request);
+    if (response.status !== 204) {
       console.log(response);
     }
+
+    this.getMoviesAsync();
+    return response.status;
   }
 
-  postMovie(model) {
-    fetch(`https://uglyrage.com/api/Movie/${model}`, {
+  postMovie = async (model) => {
+    console.log(model)
+    const headers = new Headers();
+    headers.append("Content-type", "application/json");
+    var options = {
       method: "POST",
-      mode: "cors",
-      body: model,
-    }).then((response) => console.log(response));
+      headers,
+      body: model
+    }
+    const request = new Request(`https://uglyrage.com/api/Movie/`, options);
+    const response = await fetch(request);
+    if (response.status !== 204) {
+      console.log(response);
+    }
+
+    this.getMoviesAsync();
+    return response.status;
   }
 
   deleteMovie = async (id) => {
