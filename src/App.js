@@ -6,6 +6,7 @@ import Program from "./Components/program";
 import Movie from "./Components/moviepage";
 import LoginPage from "./Components/loginpage";
 import AdminPage from "./Components/Admin";
+import EditMovie from "./Components/AdminComponents/PartialComponents/EditMovie";
 
 import { HashRouter, Route, Switch } from "react-router-dom";
 import BioNavbar from "./Components/navbar";
@@ -23,6 +24,7 @@ const App = () => {
           <Route exact path="/" component={Init} />
           <Route path="/login" component={LoginPage} />
           <Route path="/admin" component={AdminPage} />
+          <Route path="/editmovie/:id" component={EditMovie} />
         </Switch>
       </HashRouter>
     </div>

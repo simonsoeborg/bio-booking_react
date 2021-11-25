@@ -32,11 +32,14 @@ class MovieStore {
   };
 
   updateMovie(id, model) {
-    fetch(`https://uglyrage.com/api/Movie/${id}`, {
+    const response = fetch(`https://uglyrage.com/api/Movie/${id}`, {
       method: "PUT",
       mode: "cors",
       body: model,
-    }).then((response) => console.log(response));
+    });
+    if (response.status !== 200) {
+      console.log(response);
+    }
   }
 
   postMovie(model) {

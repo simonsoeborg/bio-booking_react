@@ -2,6 +2,7 @@
 import { observer } from "mobx-react-lite";
 import { Component } from "react";
 import { Table, Button, Container } from "react-bootstrap";
+import { useHistory } from "react-router";
 import { ms } from "../../Assets/Stores/MovieStore";
 
 const initialState = {
@@ -10,6 +11,13 @@ const initialState = {
 };
 
 const MovieAdmin = () => {
+  const history = useHistory();
+
+  const routeChange = (id) => {
+    let path = `./editmovie/${id}`;
+    history.push(path);
+  };
+
   if (!ms.Movies || ms.Movies.length < 1) return <h1>Loading..</h1>;
   else
     return (
@@ -33,7 +41,11 @@ const MovieAdmin = () => {
                 <td>{movie.movieDuration}</td>
                 <td>{movie.movieReleaseDate}</td>
                 <td>
-                  <Button className="TableEditBtn" variant="outline-warning">
+                  <Button
+                    className="TableEditBtn"
+                    variant="outline-warning"
+                    onClick={() => routeChange(movie.id)}
+                  >
                     Edit
                   </Button>
                   <Button
