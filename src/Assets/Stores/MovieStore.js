@@ -32,7 +32,6 @@ class MovieStore {
   };
 
   updateMovie = async (id, model) => {
-    console.log(model)
     const headers = new Headers();
     headers.append("Content-type", "application/json");
     var options = {

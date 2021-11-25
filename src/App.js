@@ -8,6 +8,9 @@ import LoginPage from "./Components/loginpage";
 import AdminPage from "./Components/Admin";
 import EditMovie from "./Components/AdminComponents/PartialComponents/EditMovie";
 import CreateMovie from "./Components/AdminComponents/PartialComponents/CreateMovie";
+import EditUser from "./Components/AdminComponents/PartialComponents/EditUser";
+import CreateTheater from "./Components/AdminComponents/PartialComponents/CreateTheater";
+import EditTheater from "./Components/AdminComponents/PartialComponents/EditTheater";
 
 import { HashRouter, Route, Switch } from "react-router-dom";
 import BioNavbar from "./Components/navbar";
@@ -26,7 +29,10 @@ const App = () => {
           <Route path="/login" component={LoginPage} />
           <Route path="/admin" component={AdminPage} />
           <Route path="/editmovie/:id" component={EditMovie} />
+          <Route path="/edituser/:id" component={EditUser} />
           <Route path="/createmovie/" component={CreateMovie} />
+          <Route path="/edittheater/:id" component={EditTheater} />
+          <Route path="/createtheater/" component={CreateTheater} />
         </Switch>
       </HashRouter>
     </div>

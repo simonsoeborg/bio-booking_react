@@ -4,11 +4,6 @@ import { Table, Button, Container } from "react-bootstrap";
 import { useHistory } from "react-router";
 import { ms } from "../../Assets/Stores/MovieStore";
 
-const initialState = {
-  movies: [],
-  movie: null,
-};
-
 const MovieAdmin = () => {
   const history = useHistory();
 
@@ -50,13 +45,13 @@ const MovieAdmin = () => {
                     variant="outline-warning"
                     onClick={() => routeEditChange(movie.id)}
                   >
-                    Edit
+                    Rediger
                   </Button>
                   <Button
                     variant="outline-danger"
                     onClick={() => ms.deleteMovie(movie.id)}
                   >
-                    Delete
+                    Slet
                   </Button>
                 </td>
               </tr>
