@@ -7,10 +7,7 @@ class BookingStore {
 
 
     constructor() {
-        makeObservable(this, {
-            seats: observable,
-            bookedseats: observable,
-        })
+        makeAutoObservable(this)
     }
 
     getSeats() {
@@ -22,8 +19,17 @@ class BookingStore {
 
     }
 
-    getBookedseats() {
-        return this.bookedseats;
+    getBookedseats = async () => {
+        let bookedseats = [];
+        const response = await fetch(
+            `https://uglyrage.com/api/Theatre`
+        );
+        const data = await response.json();
+
+        runInAction(() => {
+            bookedseats = data;
+        })
+        return bookedseats;
     }
 
     setBookedseats(bookedseats) {
@@ -32,3 +38,4 @@ class BookingStore {
 
 
 }
+export default new BookingStore();

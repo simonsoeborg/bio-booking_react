@@ -7,12 +7,14 @@ import Movie from "./Components/moviepage";
 import LoginPage from "./Components/loginpage";
 import AdminPage from "./Components/Admin";
 import MovieStore from './Assets/Stores/MovieStore';
+import BookingStore from './Assets/Stores/BookingStore';
 
 import { HashRouter, Route, Switch } from "react-router-dom";
 import BioNavbar from "./Components/navbar";
 
 const App = () => {
   MovieStore.getMoviesAsync();
+  BookingStore();
   return (
     <div className="App">
       <HashRouter>
