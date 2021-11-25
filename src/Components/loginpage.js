@@ -4,10 +4,6 @@ import { Button } from "react-bootstrap";
 import { Container, Table } from "react-bootstrap";
 import { us } from '../Assets/Stores/UserStore';
 
-function getElementInList(arr, element) {
-  return arr.filter((elem) => elem.prop === element);
-}
-
 class LoginPage extends Component {
   data = null
   render() {

@@ -1,8 +1,7 @@
 import { useHistory } from "react-router";
-import { Observer, observer } from 'mobx-react-lite';
+import { observer } from 'mobx-react-lite';
 import { Table, Button, Container, Form } from "react-bootstrap";
 import { us } from '../../Assets/Stores/UserStore';
-import { ms } from "../../Assets/Stores/MovieStore";
 
 const UserAdmin = () => {
   const history = useHistory();
@@ -12,28 +11,23 @@ const UserAdmin = () => {
     history.push(path);
   };
 
-  const routeCreateChange = () => {
-    let path = `./createuser/`;
-    history.push(path);
-  }
-
   if (!us.Users || us.Users.length < 1) return <h1>Loading..</h1>
   else
     return (
       <Container>
         <Table striped bordered hover>
-          <thead>
-            <tr>
-              <th>Bruger Id</th>
-              <th>Fornavn</th>
-              <th>Efternavn</th>
-              <th>Email</th>
-              <th>Billede</th>
-              <th>Bekræftet?</th>
-              <th>Admin?</th>
-              <th></th>
-            </tr>
-          </thead>
+        <thead>
+          <tr>
+            <th>Bruger Id</th>
+            <th>Fornavn</th>
+            <th>Efternavn</th>
+            <th>Email</th>
+            <th>Billede</th>
+            <th>Bekræftet?</th>
+            <th>Admin?</th>
+            <th></th>
+          </tr>
+        </thead>
           <tbody>
             {us.Users.map((user, index) => (
               <tr key={index}>
