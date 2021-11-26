@@ -1,12 +1,73 @@
 import React, { useState } from 'react';
 import { Container, ProgressBar, Accordion, Form, Col, Row, Modal, Image } from "react-bootstrap"
-import { toJS } from 'mobx';
 import { observer } from 'mobx-react-lite'
-import { useParams } from "react-router";
 import placehImg from '../images/posterPlaceholder.jpg';
-import { ms } from '../Assets/Stores/MovieStore';
-import { ss } from '../Assets/Stores/SeatStore';
+// import { toJS } from 'mobx';
+// import { useParams } from "react-router";
+// import { ms } from '../Assets/Stores/MovieStore';
+// import { ss } from '../Assets/Stores/SeatStore';
+// import Seat from './BookingComponents/SeatComponent';
+import MovieContext from './Magnus/contexts/MovieContext';
+import PriceCalculator from './Magnus/PriceCalculator';
+import BookingButt from './Magnus/BookingButton';
+import SeatAvailability from './Magnus/SeatAvailability';
+import SeatMatrix from './Magnus/SeatMatrix';
 
+const Booking = () => {
+    const [movies, EditMovies] = useState({
+        movieNames: {
+            "Shang-Chi": 100,
+            "Free Guy": 80,
+            "Jaws": 110,
+            "Interstellar": 120,
+            "Dune": 100
+        },
+        moviePrice: 100,
+        totalSeats: 0,
+        seatNumbers: []
+    });
+
+    return (
+        <Container fluid style={{ backgroundColor: '#96948f' }}>
+            <Row style={{ justifyContent: 'left' }}>
+                <Col>
+                    <Image src={placehImg} thumbn style={{ width: '180px', height: '260px' }} />
+                </Col>
+            </Row>
+            <Row style={{ justifyContent: 'center' }}>
+                <Col xs={3}>
+                    <Form>
+                        <Form.Group >
+                            <Form.Label>Navn</Form.Label>
+                            <Form.Control type="fullname" placeholder="Indtast dit fulde navn" />
+                        </Form.Group>
+                        <Form.Group>
+                            <Form.Label>Email address</Form.Label>
+                            <Form.Control type="email" placeholder="Enter email" />
+                        </Form.Group>
+                        <p></p>
+                        <MovieContext.Provider value={{ movies, changeState: EditMovies }}>
+                            <PriceCalculator />
+                            <BookingButt />
+                        </MovieContext.Provider>
+                    </Form>
+                </Col>
+                <Col xs={3}>
+                    <p> Choose your seats </p>
+                    <MovieContext.Provider value={{ movies, changeState: EditMovies }}>
+                        <SeatAvailability />
+                        <SeatMatrix />
+                    </MovieContext.Provider>
+                </Col>
+            </Row>
+        </Container>
+    )
+}
+
+export default observer(Booking);
+
+
+/*
 const ChangeProgressState = (value) => {
     const [progress, setProgress] = useState(0); 
 
@@ -80,7 +141,7 @@ const Booking = () => {
                                     <option key={i+1} value={i+1}>{i+1}</option>
                                 )}
                             </Form.Select>
-                            
+                            <Seat />
                             </Accordion.Body>
                         </Accordion.Item> : null
                         }
@@ -149,8 +210,7 @@ const MoviesToSelectForm = (movies) => {
     }
 }
 
-
-export default observer(Booking);
+ */
 
 /*
 
