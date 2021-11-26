@@ -1,6 +1,6 @@
 import { Button } from 'react-bootstrap'
 import React, { useContext } from 'react'
-import MovieContext from "../contexts/MovieContext"
+import MovieContext from "./contexts/MovieContext"
 import Seat from './Seat'
 
 

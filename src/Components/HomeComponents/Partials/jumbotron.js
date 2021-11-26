@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { Carousel } from 'react-bootstrap';
-import image1 from '../images/avengers.jpg'
-import image2 from '../images/suicidesquard_jumbo.jpg'
-import image3 from '../images/interstellar.jpg'
+import image1 from '../../../images/avengers.jpg'
+import image2 from '../../../images/suicidesquard_jumbo.jpg'
+import image3 from '../../../images/interstellar.jpg'
 
 const Jumbotron = () => {
     const [index, setIndex] = useState(0);

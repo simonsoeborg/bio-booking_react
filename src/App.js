@@ -1,10 +1,10 @@
 import React from "react";
 import "./App.css";
-import Init from "./Components/grid";
-import InfoSite from "./Components/infosite";
-import Program from "./Components/program";
-import Movie from "./Components/moviepage";
-import LoginPage from "./Components/loginpage";
+import Init from "./Components/Home";
+import Booking from "./Components/Booking";
+import Program from "./Components/Program";
+import Movie from "./Components/Movie";
+import LoginPage from "./Components/LoginPage";
 import AdminPage from "./Components/Admin";
 import EditMovie from "./Components/AdminComponents/PartialComponents/EditMovie";
 import CreateMovie from "./Components/AdminComponents/PartialComponents/CreateMovie";
@@ -13,7 +13,7 @@ import CreateTheater from "./Components/AdminComponents/PartialComponents/Create
 import EditTheater from "./Components/AdminComponents/PartialComponents/EditTheater";
 
 import { HashRouter, Route, Switch } from "react-router-dom";
-import BioNavbar from "./Components/navbar";
+import BioNavbar from "./Components/Navbar";
 
 const App = () => {
   return (
@@ -21,7 +21,8 @@ const App = () => {
       <HashRouter>
         <BioNavbar />
         <Switch>
-          <Route path="/infobook/" component={InfoSite} />
+          <Route path="/booking/:id" component={Booking} />
+          <Route path="/booking/" component={Booking} />
           <Route path="/upcoming" />
           <Route path="/program" component={Program} />
           <Route path="/movie/:id" component={Movie} />

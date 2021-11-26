@@ -1,10 +1,25 @@
-import React from "react";
+import React, { useState } from "react";
 import { Nav, Navbar, Container, Form } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
 import { useAuth0 } from "@auth0/auth0-react";
+import { us } from '../Assets/Stores/UserStore'; 
 
 export const BioNavbar = () => {
   const { user, isAuthenticated } = useAuth0();
+
+  const [ isAdmin, setIsAdmin ] = useState(false);
+
+  if(isAuthenticated && !isAdmin) {
+    us.Users.map((getUser) => {
+      if(getUser.email === user.email) {
+        if(getUser.admin) {
+          setIsAdmin(true);
+          us.getUsersAsync();
+        }
+      }
+    })
+  }
+
   return (
     <div>
       <Navbar expand="lg" bg="light">
@@ -18,7 +33,7 @@ export const BioNavbar = () => {
               <LinkContainer to="/">
                 <Nav.Link>Hjem</Nav.Link>
               </LinkContainer>
-              <LinkContainer to="/infobook">
+              <LinkContainer to="/booking">
                 <Nav.Link>Booking</Nav.Link>
               </LinkContainer>
               <LinkContainer to="/upcoming">
@@ -28,7 +43,7 @@ export const BioNavbar = () => {
                 <Nav.Link>Program</Nav.Link>
               </LinkContainer>
               <LinkContainer to="/admin">
-                <Nav.Link>{isAuthenticated ? "Admin Panel" : ""}</Nav.Link>
+                <Nav.Link>{isAdmin ? "Admin Panel" : ""}</Nav.Link>
               </LinkContainer>
             </Nav>
           </Navbar.Collapse>

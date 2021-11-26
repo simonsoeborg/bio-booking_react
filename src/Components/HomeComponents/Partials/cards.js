@@ -1,7 +1,6 @@
 import { observer } from "mobx-react-lite";
-import { Component } from "react";
 import { Row, Card, CardGroup } from "react-bootstrap";
-import { ms } from "../Assets/Stores/MovieStore";
+import { ms } from "../../../Assets/Stores/MovieStore";
 
 const MovieCards = () => {
   if (!ms.Movies || ms.Movies.length === 0) {
