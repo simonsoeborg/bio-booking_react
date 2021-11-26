@@ -1,4 +1,4 @@
-import { configure, makeAutoObservable, runInAction } from "mobx";
+import { configure, makeAutoObservable } from "mobx";
 
 configure({ enforceActions: true });
 

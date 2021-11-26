@@ -3,7 +3,7 @@ From https://github.com/manojnaidu619/react-movie-seat-booking
 and then edited for our own purposes
 */
 import React, {useContext} from "react"
-import MovieContext from "../contexts/MovieContext"
+import MovieContext from "../../contexts/MovieContext"
 
 const PriceCalculator = () => {
 	const {movies} = useContext(MovieContext)
