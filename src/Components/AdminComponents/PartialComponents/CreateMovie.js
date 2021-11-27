@@ -79,6 +79,17 @@ const CreateMovie = () => {
                   />
                 </Form.Group>
                 <Form.Group>
+                  <Form.Label>Første Visningsdag</Form.Label>
+                  <Form.Control
+                    size="sm" 
+                    type="text"
+                    placeholder="YYYY-MM-DD"
+                    onChange={(e) => {
+                      ms.Movie.firstFeatureDate = e.target.value;
+                    }}
+                  />
+                </Form.Group>
+                <Form.Group>
                   <Form.Label>Visningstider</Form.Label>
                   <Form.Control
                     size="sm" 
