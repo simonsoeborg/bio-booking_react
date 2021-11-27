@@ -48,20 +48,25 @@ const Booking = () => {
                                 <Form.Label>Email address</Form.Label>
                                 <Form.Control type="email" placeholder="Enter email" />
                             </Form.Group>
-                            <p></p>
-                            <MovieContext.Provider value={{ movies, changeState: EditMovies }}>
-                                <PriceCalculator />
-                                <BookingButt />
-                            </MovieContext.Provider>
                         </Form>
                         </Accordion.Body>
                     </Accordion.Item>
-                    <Accordion.Item>
+                    <Accordion.Item eventKey="1">
                         <Accordion.Header>Vælg sæde(r)</Accordion.Header>
                         <Accordion.Body>
                             <MovieContext.Provider value={{ movies, changeState: EditMovies }}>
                                 <SeatAvailability />
                                 <SeatMatrix />
+                            </MovieContext.Provider>
+                        </Accordion.Body>
+                    </Accordion.Item>
+                    <Accordion.Item eventKey="2">
+                        <Accordion.Header>Bekræftelse</Accordion.Header>
+                        <Accordion.Body>
+                            <p></p>
+                            <MovieContext.Provider value={{ movies, changeState: EditMovies }}>
+                                <PriceCalculator />
+                                <BookingButt />
                             </MovieContext.Provider>
                         </Accordion.Body>
                     </Accordion.Item>
