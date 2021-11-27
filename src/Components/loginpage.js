@@ -3,6 +3,7 @@ import { Component } from "react";
 import { Button } from "react-bootstrap";
 import { Container, Table } from "react-bootstrap";
 import { us } from '../Assets/Stores/UserStore';
+import { toJS } from 'mobx';
 
 class LoginPage extends Component {
   data = null
@@ -10,8 +11,9 @@ class LoginPage extends Component {
     const { loginWithPopup, logout, user, isAuthenticated } = this.props.auth0;
 
     if (isAuthenticated)
-      us.Users.map((getUser) => {
-        if(user.id !== getUser.id) {
+      toJS(us.Users).map((getUser) => {
+        console.log(getUser)
+        if(user.email !== getUser.email) {
           // User doesnt exists "create new User"
           this.data = {
             "given_Name": user.given_name,

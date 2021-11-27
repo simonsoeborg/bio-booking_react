@@ -2,9 +2,9 @@ import React from "react";
 import "./App.css";
 import Init from "./Components/Home";
 import Booking from "./Components/Booking";
-import Program from "./Components/program";
-import Movie from "./Components/movie";
-import LoginPage from "./Components/loginpage";
+import Program from "./Components/Program";
+import Movie from "./Components/Movie";
+import LoginPage from "./Components/LoginPage";
 import AdminPage from "./Components/Admin";
 import EditMovie from "./Components/AdminComponents/PartialComponents/EditMovie";
 import CreateMovie from "./Components/AdminComponents/PartialComponents/CreateMovie";
@@ -14,7 +14,7 @@ import EditTheater from "./Components/AdminComponents/PartialComponents/EditThea
 import Upcoming from './Components/Upcoming';
 
 import { HashRouter, Route, Switch } from "react-router-dom";
-import BioNavbar from "./Components/navbar";
+import BioNavbar from "./Components/Navbar";
 
 const App = () => {
   return (
