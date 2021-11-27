@@ -12,7 +12,7 @@ import EditUser from "./Components/AdminComponents/PartialComponents/EditMovie";
 import CreateTheater from "./Components/AdminComponents/PartialComponents/CreateTheater";
 import EditTheater from "./Components/AdminComponents/PartialComponents/EditTheater";
 import Upcoming from './Components/Upcoming';
-
+// force test
 import { HashRouter, Route, Switch } from "react-router-dom";
 import BioNavbar from "./Components/Navbar";
 
