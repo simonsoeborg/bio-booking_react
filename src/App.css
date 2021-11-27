@@ -62,3 +62,7 @@
   color: lightcoral;
   cursor: pointer;
 }
+
+.upcomingCardOnClick:hover {
+  cursor: pointer;
+}

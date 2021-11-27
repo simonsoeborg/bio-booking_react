@@ -63,18 +63,28 @@ function LoadedMoviePage() {
         </Row>
         <Row>
           <Col xs={6} md={6}>
-            <Col>
-              <h4>Visningsdage: </h4>
-            </Col>
-            <Col>
-              <p>
-                {ms.Movie.movieFeaturesDates.split(",").map((item) => (
-                  <a key={item} href="#/infobook/">
-                    {item}
-                  </a>
-                ))}
-              </p>
-            </Col>
+            <Row>
+              <Col>
+                <h4>Først visningsdag</h4>
+              </Col>
+              <Col>
+                <h4>Visningstider: </h4>
+              </Col>
+            </Row>
+            <Row>
+              <Col>
+                <p>{ms.Movie.firstFeatureDate}</p>
+              </Col>
+              <Col>
+                <p>
+                  {ms.Movie.movieFeaturesDates.split(",").map((item) => (
+                    <a key={item} href="#/infobook/">
+                      {item}
+                    </a>
+                  ))}
+                </p>
+              </Col>
+            </Row>
           </Col>
         </Row>
       </Container>

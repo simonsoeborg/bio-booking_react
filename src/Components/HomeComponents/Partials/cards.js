@@ -27,7 +27,7 @@ const MovieCards = () => {
                       style={{ width: "180px", height: "260px" }}
                     />
                     <Card.Title>{movie.movieName}</Card.Title>
-                    <Card.Link href="#/infobook/">18:00</Card.Link>
+                    <Card.Link href="#/movie/">18:00</Card.Link>
                   </Card.Body>
                 </Card>
               </a>
