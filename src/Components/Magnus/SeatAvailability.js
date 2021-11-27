@@ -8,9 +8,9 @@ import Seat from './Seat'
 const SeatAvailability = () => {
 	return (
 		<div className="row">
-			Available : <Seat seatColor="seat-grey" />
-			Selected : <Seat seatColor="seat-black" />
-			Booked : <Seat seatColor="seat-red"/>
+			Ledige : <Seat seatColor="seat-grey" />
+			Valgte : <Seat seatColor="seat-black" />
+			Optaget : <Seat seatColor="seat-red"/>
 		</div>
 	)
 }

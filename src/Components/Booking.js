@@ -28,37 +28,44 @@ const Booking = () => {
     });
 
     return (
-        <Container fluid style={{ backgroundColor: '#96948f' }}>
+        <Container>
             <Row style={{ justifyContent: 'left' }}>
                 <Col>
                     <Image src={placehImg} thumbn style={{ width: '180px', height: '260px' }} />
                 </Col>
             </Row>
-            <Row style={{ justifyContent: 'center' }}>
-                <Col xs={3}>
-                    <Form>
-                        <Form.Group >
-                            <Form.Label>Navn</Form.Label>
-                            <Form.Control type="fullname" placeholder="Indtast dit fulde navn" />
-                        </Form.Group>
-                        <Form.Group>
-                            <Form.Label>Email address</Form.Label>
-                            <Form.Control type="email" placeholder="Enter email" />
-                        </Form.Group>
-                        <p></p>
-                        <MovieContext.Provider value={{ movies, changeState: EditMovies }}>
-                            <PriceCalculator />
-                            <BookingButt />
-                        </MovieContext.Provider>
-                    </Form>
-                </Col>
-                <Col xs={3}>
-                    <p> Choose your seats </p>
-                    <MovieContext.Provider value={{ movies, changeState: EditMovies }}>
-                        <SeatAvailability />
-                        <SeatMatrix />
-                    </MovieContext.Provider>
-                </Col>
+            <Row className="justify-content-md-center">
+                <Accordion style={{ width: '40rem', margin: '1rem'}} defaultActiveKey="0">
+                    <Accordion.Item eventKey="0">
+                        <Accordion.Header>Indtast dine oplysninger</Accordion.Header>
+                        <Accordion.Body>
+                        <Form>
+                            <Form.Group >
+                                <Form.Label>Navn</Form.Label>
+                                <Form.Control type="fullname" placeholder="Indtast dit fulde navn" />
+                            </Form.Group>
+                            <Form.Group>
+                                <Form.Label>Email address</Form.Label>
+                                <Form.Control type="email" placeholder="Enter email" />
+                            </Form.Group>
+                            <p></p>
+                            <MovieContext.Provider value={{ movies, changeState: EditMovies }}>
+                                <PriceCalculator />
+                                <BookingButt />
+                            </MovieContext.Provider>
+                        </Form>
+                        </Accordion.Body>
+                    </Accordion.Item>
+                    <Accordion.Item>
+                        <Accordion.Header>Vælg sæde(r)</Accordion.Header>
+                        <Accordion.Body>
+                            <MovieContext.Provider value={{ movies, changeState: EditMovies }}>
+                                <SeatAvailability />
+                                <SeatMatrix />
+                            </MovieContext.Provider>
+                        </Accordion.Body>
+                    </Accordion.Item>
+                </Accordion>
             </Row>
         </Container>
     )
