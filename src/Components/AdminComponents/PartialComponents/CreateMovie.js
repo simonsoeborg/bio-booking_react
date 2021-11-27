@@ -83,7 +83,7 @@ const CreateMovie = () => {
                   <Form.Control
                     size="sm" 
                     type="text"
-                    placeholder="YYYY-MM-DD"
+                    placeholder="DD-MM-YYYY"
                     onChange={(e) => {
                       ms.Movie.firstFeatureDate = e.target.value;
                     }}
