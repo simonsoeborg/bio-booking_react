@@ -81,3 +81,9 @@ a {
 .seatbutt.occ {
   background-color: chartreuse;
 }
+
+.BookingProcess {
+  justify-content: center;
+  width: 40rem;
+  text-align: center;
+}

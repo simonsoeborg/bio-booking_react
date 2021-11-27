@@ -1,7 +1,7 @@
 import React from "react";
 import { Container, Row } from "react-bootstrap";
-import Jumbotron from "./jumbotron";
-import MovieCards from "./cards";
+import Jumbotron from "./HomeComponents/Partials/jumbotron";
+import MovieCards from "./HomeComponents/Partials/cards";
 
 const GridLayout = () => {
   return (
