@@ -10,31 +10,53 @@ const LoginPage = () => {
   const [data,setData] = useState(null)
   const [exists, setExists] = useState(false);
   const [userExists, setUserExists] = useState(null)
+  const [ hasLoaded, setHasLoaded ] = useState(false);
 
   const { loginWithPopup, logout, user, isAuthenticated } = useAuth0();
 
+  // If logged in by Auth0
   if (isAuthenticated) {
-    toJS(us.Users).map((getUser) => {
-      if(user.email === getUser.email) {
-        if(!exists) {
-          setExists(true);
-          if(userExists === null)
-            setUserExists(getUser)
+    // Wait for the UserStore to get Users
+    if(!us.Users || us.Users.length < 1) {
+      console.log("waiting")
+    } else {
+      
+      const isEqual = (arg1, arg2) => {
+        console.log(`arg1: ${{arg1}} | arg2: ${{arg2}}`)
+        if(arg1.email === arg2.email) {
+          if(!hasLoaded){
+            setHasLoaded(true);
+            if(arg2 === null)
+              setUserExists(toJS(arg2));
+          }
+          return true
+        } else {
+          return false
         }
       }
-    })
 
-    if(!exists && userExists !== null && data === null) {
-      setData({
-        "given_Name": this.userExists.given_name,
-        "family_Name": this.userExists.family_name,
-        "email": this.userExists.email,
-        "email_Verified": this.userExists.email_verified,
-        "picture": this.userExists.picture,
-        "admin": "false",
-      });
-  
-      us.postUser(JSON.stringify(data));
+      // Map through all users to check if new User is among the users
+      if(!exists) {
+        toJS(us.Users).find(dbUser => setExists(isEqual(dbUser, user)))
+      }
+
+      if(!exists) {
+        console.log(userExists)
+        if(userExists !== null) {
+          setData({
+            "given_Name": toJS(userExists).given_name,
+            "family_Name": toJS(userExists).family_name,
+            "email": toJS(userExists).email,
+            "email_Verified": toJS(userExists).email_verified,
+            "picture": toJS(userExists).picture,
+            "admin": "false",
+          });
+        }
+    
+        setExists(true);
+        if(data !== null)
+          us.postUser(JSON.stringify(data));
+      }
     }
   }
 
