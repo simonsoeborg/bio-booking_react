@@ -8,11 +8,10 @@ import LoginPage from "./Components/LoginPage";
 import AdminPage from "./Components/Admin";
 import EditMovie from "./Components/AdminComponents/PartialComponents/EditMovie";
 import CreateMovie from "./Components/AdminComponents/PartialComponents/CreateMovie";
-import EditUser from "./Components/AdminComponents/PartialComponents/EditMovie";
+import EditUser from "./Components/AdminComponents/PartialComponents/EditUser";
 import CreateTheater from "./Components/AdminComponents/PartialComponents/CreateTheater";
 import EditTheater from "./Components/AdminComponents/PartialComponents/EditTheater";
 import Upcoming from './Components/Upcoming';
-// force test
 import { HashRouter, Route, Switch } from "react-router-dom";
 import BioNavbar from "./Components/Navbar";
 
