@@ -1,7 +1,8 @@
 import { useHistory } from "react-router";
 import { observer } from 'mobx-react-lite';
-import { Table, Button, Container, Form } from "react-bootstrap";
+import { Table, Button, Container, Spinner } from "react-bootstrap";
 import { ts } from '../../Assets/Stores/TheaterStore';
+import Loading from '../GlobalPartials/Loading';
 
 const TheaterAdmin = () => {
   const history = useHistory();
@@ -16,7 +17,10 @@ const TheaterAdmin = () => {
     history.push(path);
   }
 
-  if (!ts.Theaters || ts.Theaters.length < 1) return <h1>Loading..</h1>
+  if (!ts.Theaters || ts.Theaters.length < 1)
+    return (
+      <Loading />
+    )
   else
     return (
       <Container>

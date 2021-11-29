@@ -54,8 +54,6 @@ const AdminPanel = () => {
   if(!isAdmin) {
     return <h1>Not authorized!</h1>
   } else {
-
-
   return (
     <Container>
       <h3>Administration</h3>
