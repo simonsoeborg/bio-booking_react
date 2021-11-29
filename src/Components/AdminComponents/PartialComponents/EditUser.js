@@ -38,6 +38,14 @@ const EditUser = () => {
   
     if (!us.User) return <h1>Loading....</h1>;
     else {
+      const toggleAdmin = () => {
+        if(!us.User.admin) {
+          us.User.admin = true;
+        } else {
+          us.User.admin = false;
+        }
+      }
+
       return (
         <Container>
           <Row>
@@ -119,9 +127,7 @@ const EditUser = () => {
                       defaultChecked={us.User.admin}
                       label="Admin?"
                       type="checkbox"
-                      onChange={(e) => {
-                        us.User.admin = e.target.value;
-                      }}/>
+                      onChange={() => toggleAdmin()}/>
                   </Form.Group>
                   <Form.Group>
                     <Form.Label>URL Profil billede</Form.Label>

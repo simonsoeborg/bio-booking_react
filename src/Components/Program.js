@@ -3,7 +3,7 @@ import { toJS } from 'mobx';
 import { useHistory } from "react-router";
 import { CardGroup, Container, Row, Card, Button } from "react-bootstrap";
 import { ms } from '../Assets/Stores/MovieStore';
-// this is program
+
 const Program = () => {
     const history = useHistory();
     const displayMovies = []

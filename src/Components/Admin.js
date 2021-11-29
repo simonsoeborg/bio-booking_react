@@ -4,6 +4,9 @@ import MovieAdmin from "./AdminComponents/MovieCRUD";
 import UserAdmin from "./AdminComponents/UserCRUD";
 import TheaterAdmin from "./AdminComponents/TheaterCRUD";
 import BookingAdmin from "./AdminComponents/BookingCRUD";
+import { us } from '../Assets/Stores/UserStore';
+import { useAuth0 } from "@auth0/auth0-react";
+import { toJS } from "mobx";
 
 const ContentSwitch = ({ displaySwitch }) => {
   switch (displaySwitch) {
@@ -22,6 +25,36 @@ const ContentSwitch = ({ displaySwitch }) => {
 
 const AdminPanel = () => {
   const [displaySwitch, setDisplaySwitch] = useState();
+  const { user, isAuthenticated } = useAuth0();
+  const [ isAdmin, setIsAdmin ] = useState(false);
+  const [ exists, setExists ] = useState(false);
+  const [ userExists, setUserExists ] = useState(null)
+
+  if (isAuthenticated) {
+    toJS(us.Users).map((getUser) => {
+      if(user.email === getUser.email) {
+        // User doesnt exists "create new User"
+        if(!exists) {
+          setExists(true);
+          if(userExists === null) {
+            setUserExists(getUser);
+          }
+        }
+      }
+    })
+  }
+
+  if(userExists !== null) {
+    if(userExists.admin) {
+      if(!isAdmin)
+        setIsAdmin(true);
+    }
+  }
+
+  if(!isAdmin) {
+    return <h1>Not authorized!</h1>
+  } else {
+
 
   return (
     <Container>
@@ -33,25 +66,25 @@ const AdminPanel = () => {
               className="ListGroupBtn"
               onClick={() => setDisplaySwitch(1)}
             >
-              Movies
+              Film
             </ListGroup.Item>
             <ListGroup.Item
               className="ListGroupBtn"
               onClick={() => setDisplaySwitch(2)}
             >
-              Users
+              Bruger
             </ListGroup.Item>
             <ListGroup.Item
               className="ListGroupBtn"
               onClick={() => setDisplaySwitch(3)}
             >
-              Theater
+              Sal
             </ListGroup.Item>
             <ListGroup.Item
               className="ListGroupBtn"
               onClick={() => setDisplaySwitch(4)}
             >
-              Bookings
+              Booking
             </ListGroup.Item>
           </ListGroup>
         </Col>
@@ -61,6 +94,7 @@ const AdminPanel = () => {
       </Row>
     </Container>
   );
+}
 };
 
 export default AdminPanel;
