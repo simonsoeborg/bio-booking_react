@@ -3,6 +3,7 @@ import { useState } from "react";
 import { useHistory, useParams } from "react-router";
 import { Container, Form, Image, Col, Row, Button, Modal } from "react-bootstrap";
 import { us } from "../../../Assets/Stores/UserStore";
+import Loading from "../../GlobalPartials/Loading";
 
 
 const EditUser = () => {
@@ -36,7 +37,7 @@ const EditUser = () => {
       handleOnShow();
     };
   
-    if (!us.User) return <h1>Loading....</h1>;
+    if (!us.User) return <Loading />
     else {
       const toggleAdmin = () => {
         if(!us.User.admin) {

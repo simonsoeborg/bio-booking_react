@@ -3,6 +3,7 @@ import { observer } from "mobx-react-lite";
 import { Image, Col, Row, Container, ListGroup } from "react-bootstrap";
 import { useParams } from "react-router";
 import { ms } from "../Assets/Stores/MovieStore";
+import Loading from '../Components/GlobalPartials/Loading';
 
 const MoviePage = () => {
   const { id } = useParams();
@@ -19,7 +20,9 @@ const MoviePage = () => {
 };
 
 function LoadedMoviePage() {
-  if (!ms.Movie) return <h1>Loading....</h1>;
+  if (!ms.Movie) return (
+    <Loading />
+  )
   else {
     return (
       <Container fluid>

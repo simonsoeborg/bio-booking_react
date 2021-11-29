@@ -3,6 +3,7 @@ import { useState } from "react";
 import { useHistory, useParams } from "react-router";
 import { Container, Form, Image, Col, Row, Button, Modal } from "react-bootstrap";
 import { ms } from "../../../Assets/Stores/MovieStore";
+import Loading from '../../GlobalPartials/Loading';
 
 const EditMovie = () => {
   const { id } = useParams();
@@ -35,7 +36,10 @@ const EditMovie = () => {
     handleOnShow();
   };
 
-  if (!ms.Movie) return <h1>Loading....</h1>;
+  if (!ms.Movie)
+  return (
+    <Loading />
+  )
   else {
     return (
       <Container>

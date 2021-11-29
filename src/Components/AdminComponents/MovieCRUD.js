@@ -3,6 +3,7 @@ import { observer } from "mobx-react-lite";
 import { Table, Button, Container } from "react-bootstrap";
 import { useHistory } from "react-router";
 import { ms } from "../../Assets/Stores/MovieStore";
+import Loading from '../GlobalPartials/Loading';
 
 const MovieAdmin = () => {
   const history = useHistory();
@@ -17,7 +18,10 @@ const MovieAdmin = () => {
     history.push(path);
   }
 
-  if (!ms.Movies || ms.Movies.length < 1) return <h1>Loading..</h1>;
+  if (!ms.Movies || ms.Movies.length < 1)
+  return (
+    <Loading />
+  )
   else
     return (
       <Container>
