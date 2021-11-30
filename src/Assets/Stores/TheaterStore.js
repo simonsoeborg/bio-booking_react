@@ -2,36 +2,36 @@ import { configure, makeAutoObservable } from "mobx";
 
 configure({ enforceActions: true });
 
-class MovieStore {
-  movies = [];
-  movie = null;
+class TheaterStore {
+  theaters = [];
+  theater = null;
 
   constructor() {
     makeAutoObservable(this);
-    this.getMoviesAsync();
+    this.getTheatersAsync();
   }
 
-  get Movies() {
-    return this.movies;
+  get Theaters() {
+    return this.theaters;
   }
 
-  get Movie() {
-    return this.movie;
+  get Theater() {
+    return this.theater;
   }
 
-  getMoviesAsync = async () => {
-    const response = await fetch(`https://uglyrage.com/api/Movie/`);
+  getTheatersAsync = async () => {
+    const response = await fetch(`https://uglyrage.com/api/Theater/`);
     const data = await response.json();
-    this.movies = data;
+    this.theaters = data;
   };
 
-  getMovieById = async (id) => {
-    const response = await fetch(`https://uglyrage.com/api/Movie/${id}`);
+  getTheaterById = async (id) => {
+    const response = await fetch(`https://uglyrage.com/api/Theater/${id}`);
     const data = await response.json();
-    this.movie = data;
+    this.theater = data;
   };
 
-  updateMovie = async (id, model) => {
+  updateTheater = async (id, model) => {
     const headers = new Headers();
     headers.append("Content-type", "application/json");
     var options = {
@@ -39,17 +39,17 @@ class MovieStore {
       headers,
       body: model
     }
-    const request = new Request(`https://uglyrage.com/api/Movie/${id}`, options);
+    const request = new Request(`https://uglyrage.com/api/Theater/${id}`, options);
     const response = await fetch(request);
     if (response.status !== 204) {
       console.log(response);
     }
 
-    this.getMoviesAsync();
+    this.getTheatersAsync();
     return response.status;
   }
 
-  postMovie = async (model) => {
+  postTheater = async (model) => {
     console.log(model)
     const headers = new Headers();
     headers.append("Content-type", "application/json");
@@ -58,18 +58,18 @@ class MovieStore {
       headers,
       body: model
     }
-    const request = new Request(`https://uglyrage.com/api/Movie/`, options);
+    const request = new Request(`https://uglyrage.com/api/Theater/`, options);
     const response = await fetch(request);
     if (response.status !== 204) {
       console.log(response);
     }
 
-    this.getMoviesAsync();
+    this.getTheatersAsync();
     return response.status;
   }
 
-  deleteMovie = async (id) => {
-    const res = await fetch(`https://uglyrage.com/api/Movie/${id}`, {
+  deleteTheater = async (id) => {
+    const res = await fetch(`https://uglyrage.com/api/Theater/${id}`, {
       method: "DELETE",
       mode: "cors",
     });
@@ -77,8 +77,8 @@ class MovieStore {
     if (res.status !== 204) {
       console.log(res);
     }
-    this.getMoviesAsync();
+    this.getTheatersAsync();
   };
 }
 
-export const ms = new MovieStore();
+export const ts = new TheaterStore();
