@@ -6,13 +6,13 @@ import React, { useContext } from 'react'
 import MovieContext from "./contexts/MovieContext"
 import { Col, Button } from 'react-bootstrap';
 import { MdEventSeat } from 'react-icons/md'
+import { ss } from '../../Assets/Stores/SeatStore';
 
 import './styles/Seat.css'
 
 const Seat = (props) => {
     const { movies } = useContext(MovieContext)
     const context = useContext(MovieContext)
-    const booked = false;
 
 
     const seatNumber = props.seatno
@@ -35,13 +35,9 @@ const Seat = (props) => {
         }
     }
 
-    // const setBooked = (seatNumbers) => {
-    //     context.changeState({...movies, bookedSeats: seatNumbers})
-    // }
-
     return (
         <Col>
-        <Button style={{ margin: '0.25rem'}} variant="outline-secondary" className={`seat-${seatNumber} ${seatStatus}`} onClick={(e) => seatClickHandler(e, props.seatno)}  ><MdEventSeat /></Button>
+            <Button style={{ margin: '0.25rem' }} variant="outline-secondary" className={`seat-${seatNumber} ${seatStatus}`} onClick={(e) => seatClickHandler(e, props.seatno)}  ><MdEventSeat /></Button>
         </Col>
     )
 }
