@@ -8,6 +8,7 @@ class SeatStore {
   seat = null;
   rows = [];
   row = null;
+  color = null;
 
   constructor() {
     makeAutoObservable(this);

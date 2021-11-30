@@ -4,13 +4,14 @@ and then edited for our own purposes
 */
 import React from "react"
 import Seat from './Seat'
+import './styles/Seat.css'
 
 const SeatAvailability = () => {
 	return (
 		<div className="row">
-			Ledige : <Seat seatColor="seat-grey" />
+			Ledige : <Seat style="seat-grey" />
 			Valgte : <Seat seatColor="seat-black" />
-			Optaget : <Seat seatColor="seat-red"/>
+			Optaget : <Seat className="Button" style="seat-red" />
 		</div>
 	)
 }

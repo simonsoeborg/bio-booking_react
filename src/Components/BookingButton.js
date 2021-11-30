@@ -1,6 +1,5 @@
 import { Button } from 'react-bootstrap'
-import React, { useContext } from 'react'
-import MovieContext from "../contexts/MovieContext"
+import React from 'react'
 import Seat from './Seat'
 import { bs } from '../Assets/Stores/BookingStore'
 
@@ -8,10 +7,7 @@ import { bs } from '../Assets/Stores/BookingStore'
 import './styles/Seat.css'
 
 const BookingButt = (props) => {
-    const { movies } = useContext(MovieContext)
-    const context = useContext(MovieContext)
 
-    const seatNumber = props.seatno
 
 
 

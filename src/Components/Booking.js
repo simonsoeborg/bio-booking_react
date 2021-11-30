@@ -7,25 +7,13 @@ import placehImg from '../images/posterPlaceholder.jpg';
 // import { ms } from '../Assets/Stores/MovieStore';
 // import { ss } from '../Assets/Stores/SeatStore';
 // import Seat from './BookingComponents/SeatComponent';
-import MovieContext from './Magnus/contexts/MovieContext';
 import PriceCalculator from './Magnus/PriceCalculator';
 import BookingButt from './Magnus/BookingButton';
 import SeatAvailability from './Magnus/SeatAvailability';
 import SeatMatrix from './Magnus/SeatMatrix';
 
 const Booking = () => {
-    const [movies, EditMovies] = useState({
-        movieNames: {
-            "Shang-Chi": 100,
-            "Free Guy": 80,
-            "Jaws": 110,
-            "Interstellar": 120,
-            "Dune": 100
-        },
-        moviePrice: 100,
-        totalSeats: 0,
-        seatNumbers: []
-    });
+
 
     return (
         <Container>
@@ -35,39 +23,36 @@ const Booking = () => {
                 </Col>
             </Row>
             <Row className="justify-content-md-center">
-                <Accordion style={{ width: '40rem', margin: '1rem'}} defaultActiveKey="0">
+                <Accordion style={{ width: '40rem', margin: '1rem' }} defaultActiveKey="0">
                     <Accordion.Item eventKey="0">
                         <Accordion.Header>Indtast dine oplysninger</Accordion.Header>
                         <Accordion.Body>
-                        <Form>
-                            <Form.Group >
-                                <Form.Label>Navn</Form.Label>
-                                <Form.Control type="fullname" placeholder="Indtast dit fulde navn" />
-                            </Form.Group>
-                            <Form.Group>
-                                <Form.Label>Email address</Form.Label>
-                                <Form.Control type="email" placeholder="Enter email" />
-                            </Form.Group>
-                        </Form>
+                            <Form>
+                                <Form.Group >
+                                    <Form.Label>Navn</Form.Label>
+                                    <Form.Control type="fullname" placeholder="Indtast dit fulde navn" />
+                                </Form.Group>
+                                <Form.Group>
+                                    <Form.Label>Email address</Form.Label>
+                                    <Form.Control type="email" placeholder="Enter email" />
+                                </Form.Group>
+                            </Form>
                         </Accordion.Body>
                     </Accordion.Item>
                     <Accordion.Item eventKey="1">
                         <Accordion.Header>Vælg sæde(r)</Accordion.Header>
                         <Accordion.Body>
-                            <MovieContext.Provider value={{ movies, changeState: EditMovies }}>
-                                <SeatAvailability />
-                                <SeatMatrix />
-                            </MovieContext.Provider>
+                            <SeatAvailability />
+                            <SeatMatrix />
+
                         </Accordion.Body>
                     </Accordion.Item>
                     <Accordion.Item eventKey="2">
                         <Accordion.Header>Bekræftelse</Accordion.Header>
                         <Accordion.Body>
                             <p></p>
-                            <MovieContext.Provider value={{ movies, changeState: EditMovies }}>
-                                <PriceCalculator />
-                                <BookingButt />
-                            </MovieContext.Provider>
+                            <PriceCalculator />
+                            <BookingButt />
                         </Accordion.Body>
                     </Accordion.Item>
                 </Accordion>
@@ -278,13 +263,13 @@ const MoviesToSelectForm = (movies) => {
 const MovieUserInfoForm = () => {
     return (
         <Row className="justify-content-md-center">
-            <Container style={{ width: '25rem'}}>
+            <Container style={{ width: '25rem' }}>
                 <Form>
-                    <Form.Group style={{ margin: '1rem'}} >
+                    <Form.Group style={{ margin: '1rem' }} >
                         <Form.Label>Indtast dit navn</Form.Label>
                         <Form.Control type="fullname" />
                     </Form.Group>
-                    <Form.Group style={{ margin: '1rem'}} >
+                    <Form.Group style={{ margin: '1rem' }} >
                         <Form.Label>Indtast din mail-adresse</Form.Label>
                         <Form.Control type="email" />
                     </Form.Group>
