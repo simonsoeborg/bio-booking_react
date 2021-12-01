@@ -11,6 +11,8 @@ import PriceCalculator from './Magnus/PriceCalculator';
 import BookingButt from './Magnus/BookingButton';
 import SeatAvailability from './Magnus/SeatAvailability';
 import SeatMatrix from './Magnus/SeatMatrix';
+import Seat from './Magnus/Seats2';
+import Seats2 from './Magnus/Seats2';
 
 const Booking = () => {
 
@@ -44,6 +46,7 @@ const Booking = () => {
                         <Accordion.Body>
                             <SeatAvailability />
                             <SeatMatrix />
+
 
                         </Accordion.Body>
                     </Accordion.Item>

@@ -30,6 +30,7 @@ class SeatStore {
     return this.row;
   }
 
+
   getSeatsAsync = async () => {
     const response = await fetch(`https://uglyrage.com/api/Seats/`);
     const data = await response.json();

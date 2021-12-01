@@ -11,7 +11,7 @@ const SeatAvailability = () => {
 		<div className="row">
 			Ledige : <Seat style="seat-grey" />
 			Valgte : <Seat seatColor="seat-black" />
-			Optaget : <Seat className="Button" style="seat-red" />
+			Optaget : <Seat seatColor="seat-red" />
 		</div>
 	)
 }

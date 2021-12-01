@@ -1,6 +1,7 @@
 import { Button } from 'react-bootstrap'
 import React, { useState } from 'react'
-import Seat from './Seats2'
+import { bs } from '../../Assets/Stores/BookingStore'
+
 
 
 import './styles/Seat.css'
@@ -10,7 +11,6 @@ const BookingButt = (props) => {
 
 
     const bookingClickHandler = () => {
-
 
 
     }

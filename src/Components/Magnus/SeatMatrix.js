@@ -3,15 +3,15 @@ From https://github.com/manojnaidu619/react-movie-seat-booking
 and then edited for our own purposes
 */
 import React, { useState } from "react"
-import Seat from './Seat'
+
 import './styles/Seat.css'
-import { Row, Col } from 'react-bootstrap';
+import { Row, Col, ListGroup } from 'react-bootstrap';
 import { observer } from "mobx-react-lite";
 import { bs } from "../../Assets/Stores/BookingStore";
-import Seats from "./Seats2";
+import Seat from "./Seats2";
 
 
-// Hent fra store
+
 const GenerateSeats = () => {
 	const [hasLoaded, setHasLoaded] = useState(false);
 	if (!hasLoaded) {
@@ -23,7 +23,7 @@ const GenerateSeats = () => {
 };
 
 
-
+// Hent fra store
 const SeatMatrix = () => {
 	return (
 		<div className="movie-complex">
@@ -33,7 +33,9 @@ const SeatMatrix = () => {
 				{/* {JSON.stringify(bs.Bookings)} */}
 
 				{bs.Bookings.map((SeatNumber, i) => {
-					return <Seat seatno={SeatNumber} />
+					return (
+						<Seat seatno={SeatNumber} />
+					)
 				})}
 
 
