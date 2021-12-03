@@ -30,7 +30,7 @@ const DisplayMovieCards = () => {
     );
   } else {
     const Movies = toJS(ms.Movies);
-    Movies.map((movie) => {
+    Movies.forEach((movie) => {
       let thisMovieDate = parseInt(movie.firstFeatureDate.split("-")[0]);
       let thisMovieMonth = parseInt(movie.firstFeatureDate.split("-")[1]);
       let thisMovieYear = parseInt(movie.firstFeatureDate.split("-")[2]);

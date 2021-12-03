@@ -12,7 +12,7 @@ export const BioNavbar = () => {
   const [userExists, setUserExists] = useState(null)
 
   if (isAuthenticated) {
-    toJS(us.Users).map((getUser) => {
+    toJS(us.Users).forEach((getUser) => {
       if (user.email === getUser.email) {
         // User doesnt exists "create new User"
         if (!exists) {

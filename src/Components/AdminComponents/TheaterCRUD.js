@@ -1,6 +1,6 @@
 import { useHistory } from "react-router";
 import { observer } from 'mobx-react-lite';
-import { Table, Button, Container, Spinner } from "react-bootstrap";
+import { Table, Button, Container } from "react-bootstrap";
 import { ts } from '../../Assets/Stores/TheaterStore';
 import Loading from '../GlobalPartials/Loading';
 
