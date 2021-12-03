@@ -81,7 +81,7 @@ function LoadedMoviePage() {
               <Col>
                 <p>
                   {ms.Movie.movieFeaturesDates.split(",").map((item) => (
-                    <a key={item} href="#/infobook/">
+                    <a key={item} href="#/booking/">
                       {item}
                     </a>
                   ))}

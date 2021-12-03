@@ -1,46 +1,61 @@
-/*
-From https://github.com/manojnaidu619/react-movie-seat-booking
-and then edited for our own purposes
-*/
-import React, { useContext } from 'react'
-import MovieContext from "./contexts/MovieContext"
+import { observer } from "mobx-react-lite";
+import React, { useState } from "react";
 import { Col, Button } from 'react-bootstrap';
-import { MdEventSeat } from 'react-icons/md'
-import { ss } from '../../Assets/Stores/SeatStore';
-
+import { MdEventSeat } from 'react-icons/md';
+import { bs } from '../../Assets/Stores/BookingStore';
 import './styles/Seat.css'
 
-const Seat = (props) => {
-    const { movies } = useContext(MovieContext)
-    const context = useContext(MovieContext)
+const Seats = (props) => {
 
-
+    const [seatColor, setseatColor] = useState(`seat-grey`);
+    const [ seatBooked, setSeatBooked ] = useState(null);
+    const [clickable, setclickable] = useState(true)
+    const [booked, setbooked] = useState(false)
+    const [selected, setselected] = useState(false)
     const seatNumber = props.seatno
-    const seatStatus = props.seatColor ? props.seatColor : "seat-grey"
+    const rowNumber = props.rowno
+    const theaterId = props.theaterId
+    if (booked) {
+        this.setseatColor("seat-red")
+        this.setclickable(false)
+    }
 
-    const seatClickHandler = (event, seatNumber) => {
-        // event.stopPropagation()
-        // const seatColor = document.querySelector(`.seat-${seatNumber}`).classList
-        // if (movies.seatNumbers.includes(seatNumber)) {
-        //     const newMovieSeats = movies.seatNumbers.filter((seat) => {
-        //         return seat !== seatNumber
-        //     })
-        //     seatColor.remove("seat-black")
-        //     seatColor.add("seat-grey")
-        //     context.changeState({ ...movies, seatNumbers: newMovieSeats, totalSeats: movies.totalSeats - 1 })
-        // } else {
-        //     seatColor.remove("seat-grey")
-        //     seatColor.add("seat-black")
-        //     context.changeState({ ...movies, seatNumbers: [...movies.seatNumbers, seatNumber], totalSeats: movies.totalSeats + 1 })
-        // }
-        console.log("I have been clicked")
+    const seatClickHandler = (arg1, arg2) => {
+        if (seatColor === 'seat-grey') {
+            setselected(true)
+            setseatColor('seat-black')
+            setSeatBooked('Green');
+            bs.Booking = {
+                isBooked: true,
+                theaterId: theaterId,
+                rowNumber: rowNumber,
+                seatNumber: seatNumber
+            }
+            bs.setBookingIntoArray(bs.Booking);
+        }
+        else if (seatColor === 'seat-black') {
+            setselected(false)
+            setseatColor('seat-grey')
+            setSeatBooked('grey');
+            bs.removeBookingFromArray(arg1, arg2);
+        }
+
+        if (booked) {
+            setclickable(false)
+        }
     }
 
     return (
         <Col>
-            <Button style={{ margin: '0.25rem' }} variant="outline-secondary" className={`seat-${seatNumber} ${seatStatus}`} onClick={(e) => seatClickHandler(e, props.seatno)}  ><MdEventSeat /></Button>
-        </Col>
+            <Button disabled={!clickable} 
+            style={{ margin: '0.25rem' }} 
+            variant="outline-secondary" 
+            className={`${seatColor}`} 
+            onClick={(e) => seatClickHandler(rowNumber, seatNumber)}> 
+                <MdEventSeat style={{ color: `${seatBooked}`}} /> 
+            </Button>
+        </Col >
     )
 }
 
-export default Seat
+export default observer(Seats);

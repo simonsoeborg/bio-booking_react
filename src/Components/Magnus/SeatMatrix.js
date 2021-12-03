@@ -5,48 +5,31 @@ and then edited for our own purposes
 import React, { useState } from "react"
 
 import './styles/Seat.css'
-import { Row, Col, ListGroup } from 'react-bootstrap';
+import { Row } from 'react-bootstrap';
 import { observer } from "mobx-react-lite";
 import { bs } from "../../Assets/Stores/BookingStore";
-import Seat from "./Seats2";
-
-
-
-const GenerateSeats = () => {
-	const [hasLoaded, setHasLoaded] = useState(false);
-	if (!hasLoaded) {
-		setHasLoaded(true);
-		bs.
-			console.log("Has loaded")
-
-	}
-};
-
+import Seat from "./Seat";
+import Loading from '../GlobalPartials/Loading';
 
 // Hent fra store
 const SeatMatrix = () => {
-	return (
-		<div className="movie-complex">
-			<p>Lærred</p>
+	if(!bs.Bookings || bs.Bookings.length < 1) {
+		return <Loading />
+	} else {
+		return (
+			<div className="movie-complex">
+				<p style={{ marginBottom: "5rem" }}>Lærred</p>
+				<Row>
+					{bs.Bookings.map((SeatNumber) => {
+						return (
+							<Seat key={SeatNumber.id} seatId={SeatNumber.id} seatno={SeatNumber.seatNumber} rowno={SeatNumber.rowNumber} theaterId={SeatNumber.theaterId}/>
+						)
+					})}
+				</Row>
 
-			<Row>
-				{/* {JSON.stringify(bs.Bookings)} */}
-
-				{bs.Bookings.map((SeatNumber, i) => {
-					return (
-						<Seat seatno={SeatNumber} />
-					)
-				})}
-
-
-			</Row>
-
-
-
-
-
-		</div>
-	)
+			</div>
+		)
+	}
 }
 
 export default observer(SeatMatrix);
