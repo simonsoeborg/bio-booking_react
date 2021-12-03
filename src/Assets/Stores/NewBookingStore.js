@@ -15,6 +15,9 @@ class NewBookingStore {
       return this.newBooking;
   }
 
+  get NewBookings() {
+    return this.newBookings;
+}
   set NewBooking(booking) {
       this.newBooking = booking;
   }
@@ -38,6 +41,18 @@ class NewBookingStore {
     if (response.status !== 204) {
       console.log(response);
     }
+  }
+
+  deleteBooking = async (id) => {
+    const res = await fetch(`https://uglyrage.com/api/Newbooking/${id}`, {
+      method: "DELETE",
+      mode: "cors",
+    });
+
+    if (res.status !== 204) {
+      console.log(res);
+    }
+    this.getNewBookingAsync();
   }
 }
 
