@@ -2,22 +2,22 @@ import React, { useState } from "react";
 import { Nav, Navbar, Container, Form } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
 import { useAuth0 } from "@auth0/auth0-react";
-import { us } from '../Assets/Stores/UserStore'; 
+import { us } from '../Assets/Stores/UserStore';
 import { toJS } from "mobx";
 
 export const BioNavbar = () => {
   const { user, isAuthenticated } = useAuth0();
-  const [ isAdmin, setIsAdmin ] = useState(false);
-  const [ exists, setExists ] = useState(false);
-  const [ userExists, setUserExists ] = useState(null)
+  const [isAdmin, setIsAdmin] = useState(false);
+  const [exists, setExists] = useState(false);
+  const [userExists, setUserExists] = useState(null)
 
   if (isAuthenticated) {
     toJS(us.Users).map((getUser) => {
-      if(user.email === getUser.email) {
+      if (user.email === getUser.email) {
         // User doesnt exists "create new User"
-        if(!exists) {
+        if (!exists) {
           setExists(true);
-          if(userExists === null) {
+          if (userExists === null) {
             setUserExists(getUser);
           }
         }
@@ -25,9 +25,9 @@ export const BioNavbar = () => {
     })
   }
 
-  if(userExists !== null) {
-    if(userExists.admin) {
-      if(!isAdmin)
+  if (userExists !== null) {
+    if (userExists.admin) {
+      if (!isAdmin)
         setIsAdmin(true);
     }
   }

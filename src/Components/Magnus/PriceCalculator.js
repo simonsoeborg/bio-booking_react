@@ -2,16 +2,22 @@
 From https://github.com/manojnaidu619/react-movie-seat-booking
 and then edited for our own purposes
 */
-import React, {useContext} from "react"
-import MovieContext from "./contexts/MovieContext"
+import React from "react"
+import { bs } from '../../Assets/Stores/BookingStore';
+import Loading from '../GlobalPartials/Loading';
+import { observer } from "mobx-react-lite";
 
-const PriceCalculator = () => {
-	const {movies} = useContext(MovieContext)
-	return (
-		<div>
-			<p>Selected {movies.totalSeats} seats and the total price is {movies.totalSeats*movies.moviePrice} DKK</p>
-		</div>
-	)
+const PriceCalculator = (items) => {
+	if(items.items === 0) {
+		return <Loading />
+	} else {
+		const price = 100 * items.items;
+		return (
+			<div>
+				<p>Pris {price} ,-</p>
+			</div>
+		)
+	}
 }
 
-export default PriceCalculator
+export default observer(PriceCalculator);

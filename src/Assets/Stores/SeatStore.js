@@ -8,6 +8,7 @@ class SeatStore {
   seat = null;
   rows = [];
   row = null;
+  color = null;
 
   constructor() {
     makeAutoObservable(this);
@@ -20,7 +21,7 @@ class SeatStore {
   get Seat() {
     return this.seat;
   }
-  
+
   get Rows() {
     return this.rows;
   }
@@ -29,13 +30,28 @@ class SeatStore {
     return this.row;
   }
 
+
+  getSeatsAsync = async () => {
+    const response = await fetch(`https://uglyrage.com/api/Seats/`);
+    const data = await response.json();
+    this.seats = data
+  }
+
+  getSeatsByTheater = async (Theater) => {
+    const response = await fetch(`https://uglyrage.com/api/Seats/${Theater}`);
+    const data = await response.json();
+    this.seats = data
+  }
+
+
+
   getSeatsNRows = (theaterId) => {
     ts.Theaters.map((theater) => {
-        if(theater.id === theaterId) {
-            console.log(`Seats in ${theater.theaterName}: ${theater.theaterSeats}`)
-            this.seats = theater.theaterSeats;
-            this.rows = theater.theaterRows;
-        }
+      if (theater.id === theaterId) {
+        console.log(`Seats in ${theater.theaterName}: ${theater.theaterSeats}`)
+        this.seats = theater.theaterSeats;
+        this.rows = theater.theaterRows;
+      }
     })
   };
 }
