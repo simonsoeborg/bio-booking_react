@@ -41,6 +41,7 @@ class NewBookingStore {
     if (response.status !== 204) {
       console.log(response);
     }
+    this.getNewBookingAsync();
   }
 
   deleteBooking = async (id) => {
