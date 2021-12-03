@@ -2,9 +2,7 @@
 From https://github.com/manojnaidu619/react-movie-seat-booking
 and then edited for our own purposes
 */
-import React, { useState } from "react"
-
-import './styles/Seat.css'
+import React from "react"
 import { Row } from 'react-bootstrap';
 import { observer } from "mobx-react-lite";
 import { bs } from "../../Assets/Stores/BookingStore";
