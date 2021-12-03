@@ -3,6 +3,7 @@ import { useState } from "react";
 import { useHistory, useParams } from "react-router";
 import { Container, Form, Col, Row, Button, Modal } from "react-bootstrap";
 import { ts } from "../../../Assets/Stores/TheaterStore";
+import Loading from "../../GlobalPartials/Loading";
 
 const EditTheater = () => {
   const { id } = useParams();
@@ -35,7 +36,7 @@ const EditTheater = () => {
     handleOnShow();
   };
 
-  if (!ts.Theater) return <h1>Loading....</h1>;
+  if (!ts.Theater) return <Loading />
   else {
     return (
       <Container>

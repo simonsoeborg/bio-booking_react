@@ -3,6 +3,7 @@ import { useState } from "react";
 import { useHistory, useParams } from "react-router";
 import { Container, Form, Image, Col, Row, Button, Modal } from "react-bootstrap";
 import { us } from "../../../Assets/Stores/UserStore";
+import Loading from "../../GlobalPartials/Loading";
 
 
 const EditUser = () => {
@@ -36,8 +37,16 @@ const EditUser = () => {
       handleOnShow();
     };
   
-    if (!us.User) return <h1>Loading....</h1>;
+    if (!us.User) return <Loading />
     else {
+      const toggleAdmin = () => {
+        if(!us.User.admin) {
+          us.User.admin = true;
+        } else {
+          us.User.admin = false;
+        }
+      }
+
       return (
         <Container>
           <Row>
@@ -119,9 +128,7 @@ const EditUser = () => {
                       defaultChecked={us.User.admin}
                       label="Admin?"
                       type="checkbox"
-                      onChange={(e) => {
-                        us.User.admin = e.target.value;
-                      }}/>
+                      onChange={() => toggleAdmin()}/>
                   </Form.Group>
                   <Form.Group>
                     <Form.Label>URL Profil billede</Form.Label>

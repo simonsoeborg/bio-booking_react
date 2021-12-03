@@ -12,7 +12,6 @@ import EditUser from "./Components/AdminComponents/PartialComponents/EditUser";
 import CreateTheater from "./Components/AdminComponents/PartialComponents/CreateTheater";
 import EditTheater from "./Components/AdminComponents/PartialComponents/EditTheater";
 import Upcoming from './Components/Upcoming';
-
 import { HashRouter, Route, Switch } from "react-router-dom";
 import BioNavbar from "./Components/Navbar";
 
@@ -24,7 +23,7 @@ const App = () => {
         <Switch>
           <Route path="/booking/:id" component={Booking} />
           <Route path="/booking/" component={Booking} />
-          <Route path="/upcoming" component={Upcoming}/>
+          <Route path="/upcoming" component={Upcoming} />
           <Route path="/program" component={Program} />
           <Route path="/movie/:id" component={Movie} />
           <Route exact path="/" component={Init} />

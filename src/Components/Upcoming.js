@@ -3,6 +3,7 @@ import { toJS } from 'mobx';
 import { useHistory } from "react-router";
 import { CardGroup, Container, Row, Card, Button } from "react-bootstrap";
 import { ms } from '../Assets/Stores/MovieStore';
+import Loading from '../Components/GlobalPartials/Loading';
 
 const UpcomingMovies = () => {
     const history = useHistory();
@@ -23,10 +24,12 @@ const UpcomingMovies = () => {
       };
 
     if (!ms.Movies || ms.Movies.length === 0) {
-        return <h1>Loading...</h1>;
+        return (
+            <Loading />
+          )
       } else {
         const Movies = toJS(ms.Movies);
-        Movies.map((movie) => {
+        Movies.forEach((movie) => {
 
             let thisMovieDate = parseInt(movie.firstFeatureDate.split('-')[0]);
             let thisMovieMonth = parseInt(movie.firstFeatureDate.split('-')[1]);

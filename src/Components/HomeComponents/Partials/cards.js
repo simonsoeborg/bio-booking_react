@@ -1,10 +1,14 @@
 import { observer } from "mobx-react-lite";
-import { Row, Card, CardGroup } from "react-bootstrap";
+import { Row } from "react-bootstrap";
 import { ms } from "../../../Assets/Stores/MovieStore";
+import DisplayMovieCards from "../../ProgramComponents/DisplayMovieCards";
+import Loading from '../../GlobalPartials/Loading';
 
 const MovieCards = () => {
   if (!ms.Movies || ms.Movies.length === 0) {
-    return <h1>Loading...</h1>;
+    return (
+      <Loading />
+    )
   } else {
     return (
       <div>
@@ -12,27 +16,7 @@ const MovieCards = () => {
           <h2>Spilles i dag</h2>
         </Row>
         <Row style={{ padding: "2rem" }} className="justify-content-md-center">
-          <CardGroup>
-            {ms.Movies.map((movie, index) => (
-              <a
-                key={movie.id}
-                style={{ cursor: "pointer" }}
-                href={`#/movie/${movie.id}`}
-              >
-                <Card key={index} border="dark" style={{ width: "15rem" }}>
-                  <Card.Body>
-                    <Card.Img
-                      variant="top"
-                      src={movie.posterURL}
-                      style={{ width: "180px", height: "260px" }}
-                    />
-                    <Card.Title>{movie.movieName}</Card.Title>
-                    <Card.Link href="#/movie/">18:00</Card.Link>
-                  </Card.Body>
-                </Card>
-              </a>
-            ))}
-          </CardGroup>
+          <DisplayMovieCards />
         </Row>
       </div>
     );

@@ -2,6 +2,7 @@ import { useHistory } from "react-router";
 import { observer } from 'mobx-react-lite';
 import { Table, Button, Container, Form } from "react-bootstrap";
 import { us } from '../../Assets/Stores/UserStore';
+import Loading from '../GlobalPartials/Loading';
 
 const UserAdmin = () => {
   const history = useHistory();
@@ -11,7 +12,10 @@ const UserAdmin = () => {
     history.push(path);
   };
 
-  if (!us.Users || us.Users.length < 1) return <h1>Loading..</h1>
+  if (!us.Users || us.Users.length < 1)
+    return (
+      <Loading />
+    )
   else
     return (
       <Container>

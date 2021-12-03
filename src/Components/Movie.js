@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import { observer } from "mobx-react-lite";
-import { Image, Col, Row, Container, ListGroup } from "react-bootstrap";
-import { useParams } from "react-router";
+import { Image, Col, Row, Container, ListGroup, Button } from "react-bootstrap";
+import { useHistory, useParams } from "react-router";
 import { ms } from "../Assets/Stores/MovieStore";
+import Loading from '../Components/GlobalPartials/Loading';
 
 const MoviePage = () => {
+  
   const { id } = useParams();
   const [hasLoaded, setHasLoaded] = useState(false);
   if (!hasLoaded) {
@@ -17,9 +19,16 @@ const MoviePage = () => {
     return <LoadedMoviePage />;
   }
 };
-
 function LoadedMoviePage() {
-  if (!ms.Movie) return <h1>Loading....</h1>;
+
+  const history = useHistory();
+  
+  const changeComponent = (id) => {
+    history.push(`/booking/${id}`)
+  }
+  if (!ms.Movie) return (
+    <Loading />
+  )
   else {
     return (
       <Container fluid>
@@ -78,7 +87,7 @@ function LoadedMoviePage() {
               <Col>
                 <p>
                   {ms.Movie.movieFeaturesDates.split(",").map((item) => (
-                    <a key={item} href="#/infobook/">
+                    <a key={item} href={`#/booking/${ms.Movie.id}`} >
                       {item}
                     </a>
                   ))}
@@ -86,6 +95,11 @@ function LoadedMoviePage() {
               </Col>
             </Row>
           </Col>
+        </Row>
+        <Row>
+          <Container style={{ width: "15rem"}}>
+            <Button variant="outline-success" onClick={() => changeComponent(ms.Movie.id)}>Book Billetter nu!</Button>
+          </Container>
         </Row>
       </Container>
     );
