@@ -5,6 +5,7 @@ configure({ enforceActions: true });
 class BookingStore {
   bookings = [];
   booking = null;
+  booked = false;
 
   constructor() {
     makeAutoObservable(this);
@@ -18,6 +19,9 @@ class BookingStore {
   get Booking() {
     return this.booking;
   }
+  get Booked() {
+    return this.booked;
+  }
 
   getBookingsAsync = async () => {
     const response = await fetch(`https://uglyrage.com/api/Booking/`);
@@ -30,6 +34,10 @@ class BookingStore {
     const data = await response.json();
     this.booking = data;
   };
+
+  updateBookings = async () => {
+
+  }
 }
 
 export const bs = new BookingStore();

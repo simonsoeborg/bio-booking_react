@@ -9,6 +9,7 @@ class SeatStore {
   rows = [];
   row = null;
   color = null;
+  booked = null;
 
   constructor() {
     makeAutoObservable(this);
@@ -29,7 +30,6 @@ class SeatStore {
   get Row() {
     return this.row;
   }
-
 
   getSeatsAsync = async () => {
     const response = await fetch(`https://uglyrage.com/api/Seats/`);

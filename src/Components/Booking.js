@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Container, ProgressBar, Accordion, Form, Col, Row, Modal, Image } from "react-bootstrap"
+import { Container, ProgressBar, Accordion, Form, Col, Row, Modal, Image, Button } from "react-bootstrap"
 import { observer } from 'mobx-react-lite'
 import placehImg from '../images/posterPlaceholder.jpg';
 // import { toJS } from 'mobx';
@@ -7,15 +7,25 @@ import placehImg from '../images/posterPlaceholder.jpg';
 // import { ms } from '../Assets/Stores/MovieStore';
 // import { ss } from '../Assets/Stores/SeatStore';
 // import Seat from './BookingComponents/SeatComponent';
-import PriceCalculator from './Magnus/PriceCalculator';
-import BookingButt from './Magnus/BookingButton';
-import SeatAvailability from './Magnus/SeatAvailability';
 import SeatMatrix from './Magnus/SeatMatrix';
-import Seat from './Magnus/Seats2';
-import Seats2 from './Magnus/Seats2';
 
+function BookingModal(props) {
+    return (
+        <Modal {...props}
+            size="sm"
+            centered
+        >
+            <Modal.Body>
+                Your booking has been made
+            </Modal.Body>
+            <Modal.Footer>
+                <Button onClick={props.onHide}>OK</Button>
+            </Modal.Footer>
+        </Modal>
+    );
+}
 const Booking = () => {
-
+    const [show, setShow] = useState(false);
 
     return (
         <Container>
@@ -44,18 +54,17 @@ const Booking = () => {
                     <Accordion.Item eventKey="1">
                         <Accordion.Header>Vælg sæde(r)</Accordion.Header>
                         <Accordion.Body>
-                            <SeatAvailability />
                             <SeatMatrix />
-
-
                         </Accordion.Body>
                     </Accordion.Item>
                     <Accordion.Item eventKey="2">
                         <Accordion.Header>Bekræftelse</Accordion.Header>
                         <Accordion.Body>
                             <p></p>
-                            <PriceCalculator />
-                            <BookingButt />
+
+                            <Button variant="success" onClick={() => setShow(true)}>Bekræft ordre</Button>
+                            <BookingModal show={show}
+                                onHide={() => setShow(false)} />
                         </Accordion.Body>
                     </Accordion.Item>
                 </Accordion>
