@@ -61,7 +61,7 @@ export const BioNavbar = () => {
           <LinkContainer to="/login">
             <Nav.Link className="specialLink">
               {" "}
-              {isAuthenticated ? user.name : "Admin"}{" "}
+              {isAuthenticated ? user.name : "Login"}{" "}
             </Nav.Link>
           </LinkContainer>
         </Form>
