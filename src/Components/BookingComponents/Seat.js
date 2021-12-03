@@ -3,7 +3,6 @@ import React, { useState } from "react";
 import { Col, Button } from 'react-bootstrap';
 import { MdEventSeat } from 'react-icons/md';
 import { bs } from '../../Assets/Stores/BookingStore';
-import './styles/Seat.css'
 
 const Seats = (props) => {
 

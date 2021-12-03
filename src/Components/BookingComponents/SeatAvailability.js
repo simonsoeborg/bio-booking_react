@@ -3,7 +3,6 @@ From https://github.com/manojnaidu619/react-movie-seat-booking
 and then edited for our own purposes
 */
 import React from "react"
-import './styles/Seat.css'
 import { Col, Button, Row } from 'react-bootstrap';
 import { MdEventSeat } from 'react-icons/md';
 
