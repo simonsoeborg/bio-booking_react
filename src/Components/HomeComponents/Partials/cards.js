@@ -2,18 +2,16 @@ import { observer } from "mobx-react-lite";
 import { Row } from "react-bootstrap";
 import { ms } from "../../../Assets/Stores/MovieStore";
 import DisplayMovieCards from "../../ProgramComponents/DisplayMovieCards";
-import Loading from '../../GlobalPartials/Loading';
+import Loading from "../../GlobalPartials/Loading";
 
 const MovieCards = () => {
   if (!ms.Movies || ms.Movies.length === 0) {
-    return (
-      <Loading />
-    )
+    return <Loading />;
   } else {
     return (
       <div>
         <Row style={{ padding: "2rem" }}>
-          <h2>Spilles i dag</h2>
+          <h2>Spilles til eksamen</h2>
         </Row>
         <Row style={{ padding: "2rem" }} className="justify-content-md-center">
           <DisplayMovieCards />
