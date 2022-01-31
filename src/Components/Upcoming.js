@@ -61,7 +61,7 @@ const UpcomingMovies = () => {
                             />
                             <Card.Title>{movie.movieName}</Card.Title>
                             <Card.Text>
-                                Første visning d. { movie.firstFeatureDate }
+                                Første visning dick. { movie.firstFeatureDate }
                                 <br />
                                 { movie.description }
                             </Card.Text>
